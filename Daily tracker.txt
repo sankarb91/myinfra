@@ -1,0 +1,237 @@
+https://federation.verizon.com/aws/console.jsp
+
+
+
+Forgerock:
+=========
+IG/AM SERVERS:
+--------------
+QA1 10.119.35.224
+QA2 10.119.34.87
+QA3 10.119.34.233
+QA4 10.119.35.150
+QA5 10.119.36.239
+
+AM----> ps -ef | grep openam
+IG----> ps -ef | grep openig
+SOA---> ps -ef | grep soa
+TOMCAT-SERVICES TOMCAT-LOGIN
+----------------------------
+ps -ef | grep tomcat-services
+ps -ef | grep tomcat-login
+
+Space Check:
+===========
+AM@10-119-34-233:/vzwhome/am # df -h
+
+AKKA/ SAFEGUARD SERVICES:
+=========================
+QA1 10.119.33.172
+QA2 10,119,37.252
+QA3 10.119.39.188
+QA4 10.119.37.243
+QA5 10.119.36.135
+
+
+Restart below order:
+===================
+
+Zookeeper
+kafka
+REDIS
+CVS
+IAM
+
+
+
+
+CVS Restart:
+============
+cd /log/safeguard/cvs
+ls -lrt(see the logs/out)
+clear the .out &.log file
+ls -lrt *.log
+ls -lrt *.out
+cd /app/akka/cvs/scripts/
+./akka_startup.sh -r all
+./akka_startup.sh -k all---Kill all services
+To Verify:
+==========
+ps -ef | grep /app/akka/cvs/bin/ | wc -l
+
+Restart CVS then IAM:
+====================
+ps -ef | grep aaservices
+ps -ef | grep vbgsrvices
+ps -ef | grep idmservices
+ps -ef | grep ssoakkaseed
+ps -ef | grep ssoigrealtimevelocity
+ps -ef | grep persistentfsm
+ps -ef | grep iamservice
+
+IAM Restart:
+============
+cd /log/safeguard/iam/
+clear the .out &.log file
+ls -lrt *.out
+ls -lrt *.log
+cd /app/akka/iam/scripts/
+./akka_startup.sh -r all
+./akka_startup.sh -k all---Kill all services
+
+To Verify:
+==========
+ps -ef | grep /app/akka/iam/bin/ | wc -l
+
+Zookeeper Restart:
+=================
+ps -ef | grep zookeeper.properties
+
+cd /app/kafka/kafka_2.0.0
+export JAVA_HOME=/app/jdk/jdk1.8.0_351/jre  (java version need to modify as per server)
+export KAFKA_OPTS="-Djava.security.auth.login.config=/app/kafka/kafka_2.0.0/jaas/zookeeper_jaas.conf -Dzookeeper.jmx.log4j.disable=true"
+nohup /app/kafka/kafka_2.0.0/bin/zookeeper-server-start.sh /app/kafka/kafka_2.0.0/config/zookeeper.properties &
+
+  ps -ef | grep server-0.properties
+  ps -ef | grep server-1.properties
+  ps -ef | grep server-2.properties
+
+
+
+Kafka Restart:
+==============
+
+ps -eaf | grep kafka
+=====================
+export KAFKA_OPTS="-Djava.security.auth.login.config=/app/kafka/kafka_2.0.0/jaas/kafka_server_jaas.conf -Dzookeeper.jmx.log4j.disable=true"
+nohup /app/kafka/kafka_2.0.0/bin/kafka-server-start.sh /app/kafka/kafka_2.0.0/config/server-0.properties > server0.out &
+nohup /app/kafka/kafka_2.0.0/bin/kafka-server-start.sh /app/kafka/kafka_2.0.0/config/server-1.properties > server1.out &
+nohup /app/kafka/kafka_2.0.0/bin/kafka-server-start.sh /app/kafka/kafka_2.0.0/config/server-2.properties > server2.out &
+
+am         22140
+am         22485
+am         22833 
+
+
+
+redis Restart:   redis application installed this server 10.119.36.222
+============
+am@10-119-33-172:/ # ps -eaf | grep /app/safeguarding/redis-cluster/redis-server
+                     ===========================================================
+am@10-119-33-172:/ # cd /app/safeguarding/redis-cluster
+am@10-119-33-172:/app/safeguarding/redis-cluster # ls -lrt
+am@10-119-33-172:/app/safeguarding/redis-cluster # cd node1
+am@10-119-33-172:/app/safeguarding/redis-cluster/node1 # ls -lrt
+am@10-119-33-172:/app/safeguarding/redis-cluster/node1 # ./start_node1.sh
+am@10-119-33-172:/app/safeguarding/redis-cluster # cd node2
+am@10-119-33-172:/app/safeguarding/redis-cluster/node2 # ls -lrt
+am@10-119-33-172:/app/safeguarding/redis-cluster/node2 # ./start_node2.sh
+am@10-119-33-172:/app/safeguarding/redis-cluster # cd node3
+am@10-119-33-172:/app/safeguarding/redis-cluster/node3 # ls -lrt
+am@10-119-33-172:/app/safeguarding/redis-cluster/node3 # ./start_node3.sh
+am@10-119-33-172:/app/safeguarding/redis-cluster # cd node4
+am@10-119-33-172:/app/safeguarding/redis-cluster/node4 # ls -lrt
+am@10-119-33-172:/app/safeguarding/redis-cluster/node4 # ./start_node4.sh
+am@10-119-33-172:/app/safeguarding/redis-cluster # cd node5
+am@10-119-33-172:/app/safeguarding/redis-cluster/node5 # ls -lrt
+am@10-119-33-172:/app/safeguarding/redis-cluster/node5 # ./start_node5.sh
+am@10-119-33-172:/app/safeguarding/redis-cluster # cd node6
+am@10-119-33-172:/app/safeguarding/redis-cluster/node6 # ls -lrt
+am@10-119-33-172:/app/safeguarding/redis-cluster/node6 # ./start_node6.sh
+
+
+am@10-119-36-135:/app/akka/cvs/scripts #  ps -eaf | grep /app/safeguarding/redis-cluster/redis-server
+=======================================================================================================
+am       1203791       1  0 03:15 ?        00:00:05 /app/safeguarding/redis-cluster/redis-server 10.119.36.135:7381 [cluster]
+am       1204113       1  0 03:16 ?        00:00:05 /app/safeguarding/redis-cluster/redis-server 10.119.36.135:7382 [cluster]
+am       1204125       1  0 03:17 ?        00:00:05 /app/safeguarding/redis-cluster/redis-server 10.119.36.135:7383 [cluster]
+am       1204665       1  0 03:23 ?        00:00:03 /app/safeguarding/redis-cluster/redis-server 10.119.36.135:7384 [cluster]
+am       1204676       1  0 03:24 ?        00:00:03 /app/safeguarding/redis-cluster/redis-server 10.119.36.135:7385 [cluster]
+am       1204687       1  0 03:24 ?        00:00:03 /app/safeguarding/redis-cluster/redis-server 10.119.36.135:7386 [cluster]
+am       1208324 1197519  0 03:46 pts/2    00:00:00 grep --color=auto /app/safeguarding/redis-cluster/redis-server
+
+
+
+am@10-119-33-172:/app/safeguarding/redis-cluster/node1# ./start_node1sh
+am@10-119-33-172:/app/safeguarding/redis-cluster/node2# ./start_node2.sh
+am@10-119-33-172:/app/safeguarding/redis-cluster/node3# ./start_node3.sh
+am@10-119-33-172:/app/safeguarding/redis-cluster/node3# ps -eaf | grep redis
+
+Space issue check:
+df -h
+
+
+cd /app/akka/iam/scripts/
+ ./akka_startup.sh -r all
+ 
+  ps -ef | grep /app/akka/iam/bin/ | wc -l
+  -----------------------------------------
+  
+  cd /app/kafka/kafka_2.0.0
+  export JAVA_HOME=/app/jdk/jdk1.8.0_351/jre
+  export KAFKA_OPTS="-Djava.security.auth.login.config=/app/kafka/kafka_2.0.0/jaas/zookeeper_jaas.conf -Dzookeeper.jmx.log4j.disable=true"
+  nohup /app/kafka/kafka_2.0.0/bin/zookeeper-server-start.sh /app/kafka/kafka_2.0.0/config/zookeeper.properties &
+  
+  ps -ef | grep zookeeper.properties
+  -----------------------------------
+  export KAFKA_OPTS="-Djava.security.auth.login.config=/app/kafka/kafka_2.0.0/jaas/kafka_server_jaas.conf -Dzookeeper.jmx.log4j.disable=true"
+  nohup /app/kafka/kafka_2.0.0/bin/kafka-server-start.sh /app/kafka/kafka_2.0.0/config/server-0.properties > server0.out &
+  nohup /app/kafka/kafka_2.0.0/bin/kafka-server-start.sh /app/kafka/kafka_2.0.0/config/server-1.properties > server1.out &
+  nohup /app/kafka/kafka_2.0.0/bin/kafka-server-start.sh /app/kafka/kafka_2.0.0/config/server-2.properties > server2.out &
+  ps -ef | grep server-0.properties
+  ps -ef | grep server-1.properties
+  ps -ef | grep server-2.properties
+
+
+Jenkins offline restart:
+=======================
+--Go to build failiure 
+--console output
+--4th line GTS.HZ2V.L01.JenkinsVcmNode open new window 
+Check the IP address
+To login putty
+root@10-119-38-119:/root # df -h
+root@10-119-38-119:/root # cd /app
+root@10-119-38-119:/app # ls -lrt
+root@10-119-38-119:/app # su weblogic
+weblogic@10-119-38-119:/app # cd jenkins
+weblogic@10-119-38-119:/app/jenkins # ls -lrt
+-rwxrwxr-x  1 weblogic weblogic     239 Aug 30 08:14 start_HZ2VNode.sh
+
+@here We are going to perform Rehydration for QA2 AM server on Monday (10/09/23)morning 8AM IST.
+
+https://docs.google.com/spreadsheets/d/1LzOGDi8t69qhSpYCs5MeLMzqPIJWHhQluFNVTt6OL_s/edit#gid=1106253119===Forgerock-Prod-hardware
+https://docs.google.com/spreadsheets/d/17driAdvRBy0pgLGof2Lsd-lFXNDO44RVk8nG68FsQQg/edit#gid=1852802945===Mybiz Tenable
+https://docs.google.com/spreadsheets/d/1sRYSIMjBGe-iip1GbY0VnVn40IZtS_I3OBAGGB58ZjU/edit#gid=1040116383===AMI Patching
+https://docs.google.com/spreadsheets/d/1sRYSIMjBGe-iip1GbY0VnVn40IZtS_I3OBAGGB58ZjU/edit#gid=1830011760===AMI Patching created by us.
+https://docs.google.com/spreadsheets/d/1vi-JlskZegYGIxSS9VJ-adAho8wklwZh19rSpx3s-NE/edit#gid=470113823=====Workload sheet send to Vinoth
+https://docs.google.com/spreadsheets/d/1LzOGDi8t69qhSpYCs5MeLMzqPIJWHhQluFNVTt6OL_s/edit#gid=1106253119=======Rehydration update sheet NP.
+
+
+UAT
+IG -1
+AM -1
+
+
+1. Jenkins node Creation - JDK 11 version install
+https://onejira.verizon.com/browse/GTSGR-138039
+
+2.FR build job salve is running on our AWS instance
+https://onejira.verizon.com/browse/GTSGR-129017
+
+
+AWS QA AM and Safeguard RHEL Patching:
+=====================================
+yum -y update
+then reboot
+and restart your services
+
+https://docs.google.com/spreadsheets/d/17driAdvRBy0pgLGof2Lsd-lFXNDO44RVk8nG68FsQQg/edit#gid=1852802945
+
+
+10/09/2023 AKKA QA2 & QA5 IAM services restarted slak Srikanth
+
+
+
+
+
