@@ -1,0 +1,151 @@
+Dashboard GTS.HZ2V.ALL.JOBS BaseFolder-UseForAllJobs All-Node/Java VBG-PROD-DEPLOY GTS.HZ2V.VSBDR.Deploy.QA.UAT #12 Console Output
+======================================================================================================================================
+Started by user Acheampong, Mark
+Rebuilds build #11
+Running as SYSTEM
+[EnvInject] - Loading node environment variables.
+[EnvInject] - Preparing an environment for the build.
+[EnvInject] - Keeping Jenkins system variables.
+[EnvInject] - Keeping Jenkins build variables.
+[EnvInject] - Injecting as environment variables the properties content 
+PATH=/usr/local/bin:/usr/bin:/bin
+ANSIBLE_FORCE_COLOR=true
+
+[EnvInject] - Variables injected successfully.
+[EnvInject] - Injecting contributions.
+Building remotely on CMB.ECQV_1 (CMB.ECQV) in workspace /apps/opt/workspace/GTS.HZ2V.ALL.JOBS/GTS.HZ2V.ALL.JOBS.BaseFolder/GTS.HZ2V.ALL.NodeJava/VBG-PROD-DEPLOY/GTS.HZ2V.VSBDR.Deploy.QA.UAT
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+ERROR: Not all environment variables could be successfully injected. Check for similarly-named environment variables.
+ERROR: Not all environment variables could be successfully injected. Check for similarly-named environment variables.
+[EnvInject] - Inject global passwords.
+[EnvInject] - Mask passwords that will be passed as build parameters.
+ERROR: Not all environment variables could be successfully injected. Check for similarly-named environment variables.
+ERROR: Not all environment variables could be successfully injected. Check for similarly-named environment variables.
+[GTS.HZ2V.VSBDR.Deploy.QA.UAT] $ /bin/bash /tmp/jenkins13706266001659231500.sh
+##########################################################################
+   Triggering Ansible Playbook 
+###########################################################################
+total 4
+-rw-r--r-- 1 root root 209 Sep  7 15:54 ansible.props
+###########################################################################
+    Content of ansible.props
+###########################################################################
+env=VSBDR_UAT
+Artifactory_URL=https://oneartifactoryci.verizon.com/artifactory/hz2v-vsbdr-registrationserviceapi-maven-dev/registrationApi-1.0.0.jar.28-20230904-044513-fca2757a
+Task=deploy_RegistrationApi.yml
+###########################################################################
+[EnvInject] - Injecting environment variables from a build step.
+[EnvInject] - Injecting as environment variables the properties file path 'ansible.props'
+[EnvInject] - Variables injected successfully.
+ERROR: Not all environment variables could be successfully injected. Check for similarly-named environment variables.
+
+******************  VZ AnsiblePlus Playbook 3.0 Begin  ******************
+
+ERROR: Not all environment variables could be successfully injected. Check for similarly-named environment variables.
+
+
+Your AuditID :27662903
+
+
+Ansible Plus Playbook Engine Starts Invoking - From 143-251-82-224.vpc.verizon.com using ansible version 2.7
+PLAY [localhost] ***************************************************************
+TASK [fail if stash repo is not private] ***************************************
+skipping: [localhost]
+TASK [synching git repo with AuditID and with Branch name] *********************
+
+changed: [localhost]
+TASK [Check the repo size] *****************************************************
+changed: [localhost]
+TASK [debug] *******************************************************************
+ok: [localhost] => {
+    "users_repo_stats": {
+        "gitRepo": "git@gitlab.verizon.com:TYPEB_MW/hz2v.openigonprem.git", 
+        "repoBranch": "vsbdr", 
+        "repoSizeOnDisk": "2M"
+    }
+}
+TASK [uri] *********************************************************************
+ok: [localhost]
+TASK [Removing Temporary GIT Directory] ****************************************
+skipping: [localhost]
+TASK [uri] *********************************************************************
+skipping: [localhost]
+TASK [mail] ********************************************************************
+skipping: [localhost]
+TASK [debug] *******************************************************************
+skipping: [localhost]
+TASK [fail] ********************************************************************
+skipping: [localhost]
+PLAY RECAP *********************************************************************
+localhost                  : ok=4    changed=2    unreachable=0    failed=0   
+localhost                  : ok=4    changed=2    unreachable=0    failed=0   
+==================================================
+SUCCESS : HOST Validation completed !
+SUCCESS : User ADOM Validation completed !
+
+==================================================
+Using /apps/opt/local/temp/AnsibleRepo/27662903/HZ2V_deploy_RegistrationApi-Playbook/ansible.cfg as config file
+PLAY [Capture Application specific vars] ***************************************
+TASK [Get app name from VSBDR_UAT] *********************************************
+Thursday 07 September 2023  15:54:44 -0400 (0:00:00.238)       0:00:00.238 **** 
+ok: [saswiamnzao15.sdc.vzwcorp.com] => {"ansible_facts": {"app_dc": "UAT", "app_name": "VSBDR"}, "changed": false}
+TASK [Set the variables when app_name = B2BSVCAM] ******************************
+Thursday 07 September 2023  15:54:44 -0400 (0:00:00.162)       0:00:00.401 **** 
+skipping: [saswiamnzao15.sdc.vzwcorp.com] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [Set the variables when app_name = LOGIN] *********************************
+Thursday 07 September 2023  15:54:44 -0400 (0:00:00.086)       0:00:00.487 **** 
+skipping: [saswiamnzao15.sdc.vzwcorp.com] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [Set the variables when app_name = MYBIZ] *********************************
+Thursday 07 September 2023  15:54:44 -0400 (0:00:00.068)       0:00:00.556 **** 
+skipping: [saswiamnzao15.sdc.vzwcorp.com] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [Set the variables when app_name = MYBIZAM] *******************************
+Thursday 07 September 2023  15:54:44 -0400 (0:00:00.080)       0:00:00.636 **** 
+skipping: [saswiamnzao15.sdc.vzwcorp.com] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [Set the variables when app_name = VEC] ***********************************
+Thursday 07 September 2023  15:54:44 -0400 (0:00:00.061)       0:00:00.698 **** 
+skipping: [saswiamnzao15.sdc.vzwcorp.com] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [Set the variables when app_name = UI] ************************************
+Thursday 07 September 2023  15:54:44 -0400 (0:00:00.070)       0:00:00.768 **** 
+skipping: [saswiamnzao15.sdc.vzwcorp.com] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [Calculate instance specific values] **************************************
+Thursday 07 September 2023  15:54:44 -0400 (0:00:00.061)       0:00:00.829 **** 
+skipping: [saswiamnzao15.sdc.vzwcorp.com] => {"changed": false, "skip_reason": "Conditional result was False"}
+TASK [Values for VSBDR] ********************************************************
+Thursday 07 September 2023  15:54:44 -0400 (0:00:00.083)       0:00:00.912 **** 
+fatal: [saswiamnzao15.sdc.vzwcorp.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'app_process_name' is undefined\n\nThe error appears to have been in '/apps/opt/local/temp/AnsibleRepo/27662903/HZ2V_deploy_RegistrationApi-Playbook/app_vars.yml': line 96, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n  - name: \"Values for {{ app_name }}\"\n    ^ here\nWe could be wrong, but this one looks like it might be an issue with\nmissing quotes.  Always quote template expression brackets when they\nstart a value. For instance:\n\n    with_items:\n      - {{ foo }}\n\nShould be written as:\n\n    with_items:\n      - \"{{ foo }}\"\n"}
+...ignoring
+PLAY [IAAS Playbook for MiddleWare Installation] *******************************
+TASK [Gathering Facts] *********************************************************
+Thursday 07 September 2023  15:54:44 -0400 (0:00:00.153)       0:00:01.066 **** 
+
+ok: [saswiamnzao15.sdc.vzwcorp.com]
+TASK [restart-tomcat : Check if the directory {{ tomcat_home }}/{{ app_process_name }} exists] ***
+Thursday 07 September 2023  15:54:53 -0400 (0:00:08.079)       0:00:09.145 **** 
+fatal: [saswiamnzao15.sdc.vzwcorp.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'app_process_name' is undefined\n\nThe error appears to have been in '/apps/opt/local/temp/AnsibleRepo/27662903/HZ2V_deploy_RegistrationApi-Playbook/roles/restart-tomcat/tasks/main.yml': line 1, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Check if the directory {{ tomcat_home }}/{{ app_process_name }} exists\n  ^ here\nWe could be wrong, but this one looks like it might be an issue with\nmissing quotes.  Always quote template expression brackets when they\nstart a value. For instance:\n\n    with_items:\n      - {{ foo }}\n\nShould be written as:\n\n    with_items:\n      - \"{{ foo }}\"\n"}
+	to retry, use: --limit @/apps/opt/local/temp/AnsibleRepo/27662903/HZ2V_deploy_RegistrationApi-Playbook/deploy_RegistrationApi.retry
+PLAY RECAP *********************************************************************
+saswiamnzao15.sdc.vzwcorp.com : ok=3    changed=0    unreachable=0    failed=1   
+saswiamnzao15.sdc.vzwcorp.com : ok=3    changed=0    unreachable=0    failed=1   
+Thursday 07 September 2023  15:54:53 -0400 (0:00:00.108)       0:00:09.254 **** 
+=============================================================================== 
+Gathering Facts --------------------------------------------------------- 8.08s
+Get app name from VSBDR_UAT --------------------------------------------- 0.16s
+Values for VSBDR -------------------------------------------------------- 0.15s
+restart-tomcat : Check if the directory {{ tomcat_home }}/{{ app_process_name }} exists --- 0.12s
+Set the variables when app_name = B2BSVCAM ------------------------------ 0.09s
+Set the variables when app_name = MYBIZ --------------------------------- 0.08s
+Calculate instance specific values -------------------------------------- 0.08s
+Set the variables when app_name = VEC ----------------------------------- 0.07s
+Set the variables when app_name = LOGIN --------------------------------- 0.07s
+Set the variables when app_name = UI ------------------------------------ 0.07s
+Set the variables when app_name = MYBIZAM ------------------------------- 0.07s
+#$$PLAYBOOK EXECUTION COMPLETED$$#
+
+ERROR: Playbook Execution Failed.
+Notifying upstream projects of job completion
+ERROR: Not all environment variables could be successfully injected. Check for similarly-named environment variables.
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+Finished: FAILURE
