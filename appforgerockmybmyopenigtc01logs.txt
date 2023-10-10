@@ -1,0 +1,37 @@
+am@10-119-35-224"/app/forgerock/myb/myopenigtc01/logs
+
+-rw-r--r-- 1 am am       431 Mar 22 11:35 route-115-smsapp.log
+-rw-r--r-- 1 am am     29876 Mar 22 11:35 localhost_access_log.2023-03-22.txt
+-rw-r--r-- 1 am am     13821 Mar 22 11:35 route-16-epamapp.log
+-rw-r--r-- 1 am am     27722 Mar 22 11:35 route-102a-ticketingapp.log
+-rw-r--r-- 1 am am      6255 Mar 22 11:35 route-105a-saasapp.log
+-rw-r--r-- 1 am am         0 Mar 23 17:08 manager.2023-03-23.log
+-rw-r--r-- 1 am am         0 Mar 23 17:08 localhost.2023-03-23.log
+-rw-r--r-- 1 am am         0 Mar 23 17:08 host-manager.2023-03-23.log
+-rw-r--r-- 1 am am     16352 Mar 23 18:08 route-001-vzauth-notifications-test-2023-03-23.0.log
+-rw-r--r-- 1 am am    108230 Mar 23 18:12 catalina.2023-03-23.log
+-rw-r--r-- 1 am am     19154 Mar 23 21:31 route-119-mbtcaptchaapp-2023-03-23.0.log
+-rw-r--r-- 1 am am  16786914 Mar 24 00:00 localhost_access_log.2023-03-23.txt
+-rw-r--r-- 1 am am         0 Mar 24 02:41 manager.2023-03-24.log
+-rw-r--r-- 1 am am         0 Mar 24 02:41 localhost.2023-03-24.log
+-rw-r--r-- 1 am am         0 Mar 24 02:41 host-manager.2023-03-24.log
+-rw-r--r-- 1 am am    181828 Mar 24 06:55 route-119-mbtcaptchaapp.log
+-rw-r--r-- 1 am am      5719 Mar 24 15:52 route-054a-ms_iam_postauth-2023-03-24.0.log
+-rw-r--r-- 1 am am   1272281 Mar 24 16:33 route-001-vzauth-notifications-test-2023-03-24.0.log
+-rw-r--r-- 1 am am    129238 Mar 24 23:07 catalina.2023-03-24.log
+-rw-r--r-- 1 am am  60918189 Mar 25 00:00 localhost_access_log.2023-03-24.txt
+-rw-r--r-- 1 am am    122198 Mar 25 12:12 route-001-vzauth-notifications-test-2023-03-25.0.log
+-rw-r--r-- 1 am am      9323 Mar 25 20:08 catalina.2023-03-25.log
+-rw-r--r-- 1 am am  65371064 Mar 26 00:00 localhost_access_log.2023-03-25.txt
+-rw-r--r-- 1 am am     11794 Mar 26 04:51 catalina.2023-03-26.log
+-rw-r--r-- 1 am am  69413410 Mar 27 00:00 localhost_access_log.2023-03-26.txt
+-rw-r--r-- 1 am am     41154 Mar 27 08:45 route-001-vzauth-notifications-test.log
+-rw-r--r-- 1 am am      6370 Mar 27 13:03 route-054a-ms_iam_postauth.log
+-rw-r--r-- 1 am am     14550 Mar 27 23:16 catalina.2023-03-27.log
+-rw-r--r-- 1 am am  89423243 Mar 28 00:00 localhost_access_log.2023-03-27.txt
+-rw-r--r-- 1 am am     16853 Mar 28 23:20 catalina.2023-03-28.log
+-rw-r--r-- 1 am am  85515897 Mar 29 00:00 localhost_access_log.2023-03-28.txt
+-rw-r--r-- 1 am am         0 Mar 29 16:16 manager.2023-03-29.log
+-rw-r--r-- 1 am am         0 Mar 29 16:16 localhost.2023-03-29.log
+-rw-r--r-- 1 am am         0 Mar 29 16:16 host-manager.2023-03-29.log
+-rw-r--r-- 1 am am     19132 Mar 29 16:17 catalina.2023-03-29.log

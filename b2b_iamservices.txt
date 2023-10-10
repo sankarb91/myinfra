@@ -1,0 +1,73 @@
+b2b_iamservices.conf
+======================
+
+input {
+    kafka {
+    bootstrap_servers => "10.119.1.42:19092,10.119.1.42:19093,10.119.1.42:19094"
+    topics => ["b2b_amservices_events"]
+    security_protocol => "SASL_PLAINTEXT"
+    sasl_mechanism => "PLAIN"
+    group_id => "qa1_b2b_events"
+    auto_offset_reset => "latest"
+    jaas_path => "/app/kafka/kafka_2.0.0/jaas/kafka_client_jaas.conf"
+    codec => "json"
+    }
+}
+filter{
+    mutate {
+        add_field => {
+            "type" => "b2b_amservices_events"
+            "dc"   => "QA1"
+        }
+    }
+}
+output
+{
+     http {
+            format => "json"
+            content_type => "application/json"
+            http_method => "post"
+            url => "https://seslogtpa.verizon.com:8088/services/collector/raw"
+            headers => ["Authorization", "Splunk e501a3ea-d754-45ff-8bae-4f7bac9e5b37"]
+    }
+}
+
+
+
+
+
+
+
+logstash-sample.conf
+====================
+
+input {
+    kafka {
+    bootstrap_servers => "10.119.1.42:19092,10.119.1.42:19093,10.119.1.42:19094"
+    topics => ["b2b_amservices_events"]
+    security_protocol => "SASL_PLAINTEXT"
+    sasl_mechanism => "PLAIN"
+    group_id => "qa1_b2b_events"
+    auto_offset_reset => "latest"
+    jaas_path => "/app/kafka/kafka_2.0.0/jaas/kafka_client_jaas.conf"
+    codec => "json"
+    }
+}
+filter{
+    mutate {
+        add_field => {
+            "type" => "b2b_amservices_events"
+            "dc"   => "QA1"
+        }
+    }
+}
+output
+{
+     http {
+            format => "json"
+            content_type => "application/json"
+            http_method => "post"
+            url => "https://seslogtpa.verizon.com:8088/services/collector/raw"
+            headers => ["Authorization", "Splunk e501a3ea-d754-45ff-8bae-4f7bac9e5b37"]
+    }
+}

@@ -1,0 +1,24 @@
+UAT Access:
+===========
+
+2  2023-05-30 13:39:05 df -h
+    3  2023-05-30 13:39:11 du -sh /app
+    4  2023-05-30 13:39:37 du -a /app | sort -n -r | head -n 10
+    5  2023-05-30 13:39:46 du -sh /app/infra/newrelic/logs.old/newrelic_agent.log
+    6  2023-05-30 13:40:03 cd /app/infra/newrelic/
+    7  2023-05-30 13:40:08 ls -lrt
+    8  2023-05-30 13:40:13 cd logs.old
+    9  2023-05-30 13:40:14 ls -lrt
+   10  2023-05-30 13:40:31 rm newrelic_agent.log
+   11  2023-05-30 13:40:34 ls -lrt
+   12  2023-05-30 13:40:37 df -h
+   13  2023-05-30 13:41:32 du -sh /app
+   14  2023-05-30 13:41:58 lsof | grep '(deleted)'
+   15  2023-05-30 13:42:36 lsof | grep '/app/infra/newrelic/logs.old/newrelic_agent.log (deleted)'
+   16  2023-05-30 13:43:21 cd /proc/22690/fd
+   17  2023-05-30 13:43:23 ls -lrt
+   18  2023-05-30 13:43:40 ps -eaf | grep 22690
+   19  2023-05-30 13:44:10 ps -eaf | grep 22638
+   20  2023-05-30 13:44:27 ls -lrt
+   21  2023-05-30 13:44:49 > /proc/22690/fd/25
+   22  2023-05-30 13:44:54 df -h

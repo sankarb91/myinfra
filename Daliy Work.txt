@@ -1,0 +1,539 @@
+VZID - sankna7        IG/AM : Naveen, Ravi, Sudhakar    page 13 : Kafka, Zookeeper, CVS restart script
+GCM ID - 9054          B2B  : Rishi
+VAST ID - 26580       CSV/IAM: Laxmi prasanna, Raisa, Raja
+
+https://federation.verizon.com/aws/console.jsp
+
+
+oice Of Customer (VoC) Log-In Friction Examples & Root Cause Discussion
+Wednesday, June 21⋅7:30 – 8:15pm
+Weekly on Wednesday
+Join BlueJeans Meeting
+ID: 552414723
+Passcode: 5621
+7:34
+Please have all voc team join this
+
+
+
+
+
+
+08/05/2023
+Task
+=====
+QA4 server login issue discussed with Srikanth moved to other team
+Prepared Nizam call slide.
+Jothi -Jenkins node add--- dont have access.
+Worked with internally about splunk log storage from prod env. This input for non prode deploy.
+Joined call with Laxmi about AWS access.
+
+
+Call discussed below points:
+============================
+Since the UAT accesswas pending for long time, we have created a slack channel with bhupedra/hari and raised request for the UAT servers.
+We need some inputs from the internal team for the ELK. we need to know how much data being used in splunk on daily or monthly
+
+09/05/2023
+==========
+Task
+====
+QA2 alert more than  90% 
+QA3 alert more than 90%
+=========
+UAT access check       -------- Approved, Awaiting for next approval sent message in slack.
+New Relic Domain: 	Tomorrow talk to Bhupendra ADEBP   https://webtools.verizon.com/Request/Applications/ADOM/AccessRequest.aspx?Domain=ADEBP&ObjectName=ADEBPSDLC_COLCONTRACTORS
+AWS VWAF need to check
+Apache Tomcat  pinged slack and srikanth responsed check with onshore team. Need to check Onshore.
+Splunk logs
+Collected java version in all AM servers and documented.
+
+
+10/05/2023
+==========
+Task
+====
+QA2 alert more than  90% 
+QA3 alert more than 90%
+=========
+UAT access check       -------- Approved, Awaiting for next approval sent message in slack.
+New Relic Domain: 	Raised the Jira ticket
+AWS VWAF need to check
+Apache Tomcat  pinged slack with onshore team.
+Splunk logs
+
+
+11/05/2023
+===========
+Task
+=====
+DR activity @ 8:30 AM IST  Last time DR done @tdc. Now enable the traffic on @sdc. load balancer.
+We completed the SDC DR activities failing over to TDC.- Infra suspended the traffic to SDC 
+
+Logs removed from QA3 from 7 GB to 3.5 GB.
+Prepared the google sheet with server list.Dev. team will update the jdk & tomcat version. 
+UAT access check       -------- Approved, Awaiting for next approval sent message in slack.
+New Relic Domain: 	Raised the Jira ticket
+AWS VWAF need to check
+Apache Tomcat  pinged slack with onshore team.
+Splunk logs
+
+
+
+
+I have prepared spreadsheet server details for collecting Jdk & Tomcat version. Please mention version in column and also pls mention if upgrade required
+or not required it will help to Vulnarabilities ticket. 
+will do the circulation. Please update.
+
+approval for GWA (Global Work Authorization )approval ID (screenshot): Pinged slack with Laxmi
+lakshmi-vbg-ciam-team  -Pinged about spread sheet with server details for update tomact & jira version
+
+12/05/2023
+===========
+Task
+=====
+UAT access check       -------- Approved, Awaiting for next approval sent message in slack.
+New Relic Domain: 	Raised the Jira ticket sent mail.
+AWS VWAF need to check
+Apache Tomcat awaiting internal Dev. team.
+Cleared QA3 logs
+Cleared Qa4 AKK server logs.
+Splunk logs
+QA3 upgrade with same version.
+
+14/05/2023
+==========
+Joined 7am DR activity . SDC failback.
+
+DR exercise--SDC(Failback)
+ sanity testing FOR LOGIN
+login.verizon.com  mba
+mblogin.verizonwireless.com/account/bisiness/login --First login then enterprise login(sso.verizonenterprise.com)
+
+mbaassistant.vzwcorp.com/tbmcsr/mbaplus  ----Organizations(tab) create Organization & Administrator
+
+
+Shiva Garlapati   Satheesh edera (satheesh.edara@verizonwireless.com) 8482198433
+
+cookies
+https://mblogin.verizon  right side search (tdc,sdc) mybssolb, gotodc
+
+
+UAT URL down call shahab sathees edere informed to  sangeetha  sudanshu helpe
+UAT IG servers are down Sudansu bring UP. TMP login.  UPTime 22hours.
+vji-------
+Application tab vji
+techopsgrafana-awseast.verizon.com     --GRafana logis select IG (VBG Realtime/VBG Monitorin)VBG Realtime /VBG IAM/CVS
+   COUNT PERCENT
+_sdc        2482	49		
+
+IAMSERVICE_SDC
+_TDC
+AM 500 & 502 & 503 & 504
+VBG LOGIN AUTH FLOW
+let side search Traffic IG AM  IAM for monitoring TDC SDC
+Grafana access
+
+
+15/05/2023
+=========
+Task
+=====
+UAT access check       -------- Already created approved but unable to access the URL need check and raise new ticket.
+New Relic Domain: 	Sent mail to Michael
+AWS VWAF need to check   ELK - Holding this access Nizam & Michael for funding process. mail received from 
+OneCloud Admin (PROD) 15/05/2023 need to give reply.
+
+Apache Tomcat awaiting internal Dev. team discussed DTP call Shab confimed if no priority pls hold it. will move to his bin.
+Need to clear QA3 logs
+Logs removed script done.
+Linux command need to practise.
+Kafka server Connection to node -3 (10-119-39-188.ebiz.verizon.com/10.119.39.188:9094) not connected.
+First done the zookeeper restart then kafka done the restart.
+
+16/05/2023
+==========
+Taak
+=======
+QA3 AKKA restart done.
+UAT access check       -------- Already created approved but unable to access the URL need check and raise new ticket.
+New Relic Domain: 	Sent mail to Michael
+AWS VWAF need to check   ELK - Holding this access Nizam & Michael for funding process.
+login issue 500 karpaga jyothi issue resolved.
+
+
+17/05/2023
+==========
+Release activity 9:30 AM IST Iswarya
+Next release June 7th release
+=============================
+VBG CIAM OoC 23.05.17 Status/Readiness
+offshore from IG - Pravin AM - Deepak
+Release Lead	-Laxmi Prasanna Gujjula
+AM              -Naveen /Sqauib/Hrishkesh              
+IAM             -krishnadevi
+IG              - Pravin
+UI              - Rakesh
+Infra           - Navaneethan      
+Dashboard Monitoring  - Sagagr / Santhiya
+QA                  - Ghani/Shivaji/Pooja 
+LT                  -Karpagajothi
+PM                  - Iswarya
+
+VBG IAM Prod deployment artifacts:Build version  Failback version AM, AKKA-IAM, AKKA-CVS, Auth-UI, Profile-UI, IG Route updates,B2B Services, RASP
+---------------------------------
+Invalid OTT token
+Oracle SQL Developer: Prod TDC
+load meter dashoboard who will update-jothi
+mblogin.verizonwireless.com  Network 
+statick OTP
+we made chage 031 route chage login IG
+Noraml login without DC
+
+iaas@tdclpt9gva110:/app/vzw_applications
+myverizonenterprise.verizon.com
+outsid US IP address
+mbaccmgrqa3.sdc.vzwcorp
+TDC AM is same as QA3
+proxy changes offshore fac
+IG cahnges in route IG service URL SPLUNK: gtsonpremlogsearch.vpc.verizon.com:8000/en-US
+load testvfor success login
+last time invalid login performed all vaid invalid
+
+1 : Deployment in TDC - Completed  Updated 1:45 PM
+
+2 : Sanity testing in TDC - Completed
+
+3: Load Testing in TDC - Completed
+
+4 : Deployment in SDC - Completed
+
+5 : Sanity testing in SDC - Completed
+
+6 : Load Testing in SDC - Completed
+
+7 : Testing:
+       Internal testing team regression - In progress
+       External app team Regression - In progress
+
+8 : End of release
+
+Grafana dashoboard VBG/VBG VBG FORGOT FLOW VBG REALTIME /VBG IAM/CVS FR Monitoring
+
+QA2 AKKA restart done.
+
+ssoakkaseed was down on the VBG iam cluster . Restarted it. Now mybiz.ops.sre team is checking.
+We verified with  respective team, the services started back.
+
+Done RASP openam restarted and communicated to Sangeetha. She is checking with internally. Hope issue will resolve if not will go openig RASP restart in jenkins.
+
+18/05/2023
+==========
+Task:
+=====
+
+NewRelic access got the GWA approval GWA- 5034
+
+
+Request URL:
+https://mbaccmgrqa1.sdc.vzwcorp.com/ifgservices/vbg/iamservices/api/pre-auth/stepup-service/v1/request-stepup/get-transaction
+Request Method:
+POST
+Status Code:
+500
+Remote Address:
+10.11.64.170:443
+Referrer Policy:
+strict-origin-when-cross-origin
+
+For above case done the permission  su am /log/safeguard/cvs # ls -lrt  
+
+
+19-05-2023
+==========
+
+Infra KT from Kannan.Pinged with Jagadeesh X Gullapalli &  Cheendrum Sathya Sai Puneeth
+   
+
+SMB fios projects KT from  Addanki, Nandeeswararao Spoken to him he dont have idea informed to Srikanth.
+                                     ============== 
+need to support both SIT and Preprod WLN IG and OpenAm issues.Comsso WLN openam  ----@Prakash Ramalingam
+
+able to see the login page, after enter otp I am facing service unavailable error
+ https://mbaccmgrqa3.sdc.vzwcorp.com/account/business/login/unifiedlogin   Done the service restart Zookeeper, kafka                                                                                      
+
+NewRelic access followup mail
+
+
+JUNE 7 release same actiivyt did on 17/05/203
+
+Code is 26May code freeze 20May
+
+
+22-05-2025
+==========
+Called Srikanth informed going to hospital and communcated thriugh slack and godwin whatsapp.
+
+
+23-05-2023
+==========
+
+Tasks:
+======
+
+UAT access check  ---Sent mail to @Sakthivel Pandiyan Ponraj, @Moorthy Sengottaiyan -   I need your approvals to access the UAT servers
+
+New Relic access: Vinita sent amil to @Domenick Salce Can you please provide these details. NR team is looking for the GWA snapshot, that has the Vendor details and Vendor location.
+GWA- 5034.
+
+
+AWS VWAF need to check   ELK - Holding this access Nizam & Michael for funding process.
+
+Logrotate script prepared and need to deploy AM IG & UI servers.
+
+10-119-34-82
+
+/app/openig/conf
+
+keytool -v -list  -keystore
+keytool -list -v -keystore        https://10.119.34.233:8075
+
+browser r  ->  IG  ->  backend
+
+10-119-36-119 -> Main IP application is running it connected to this IP ->  10-119-32-37  (IG configured)
+
+
+24-05-2023
+==========
+Tasks:
+======
+
+UAT access check  ---Sent mail to @Sakthivel Pandiyan Ponraj, @Moorthy Sengottaiyan -   I need your approvals to access the UAT servers
+
+New Relic access: send the followup mail 22nd last mail from Lakshmi.
+
+
+AWS VWAF need to check   ELK - Holding this access Nizam & Michael for funding process.
+QA2 AKKA/IAM/KAFKA  we have cleared  now  /app  size  from 93%  to  89%.-----Laxmi prasanna
+
+Restart QA2 Akka-----Zookeeper, Kafka, redis, CVS , IAM  -Hrishi
+
+25-05-2023
+==========
+Tasks:
+======
+QA2 Akka--- AKKA/IAM/KAFKA 
+Current /app usage is 94% need to clear
+
+Nizam call @3PM
+
+Code Freeze: 05-26-23
+Progression Testing: 05-29-23 and 05-30-23
+External/Internal regression will be opened 05-31-23
+Load Testing needs to be completed by 05-31-23
+Deployment - 06-07-23
+
+
+UAT access check  ---Need to check Shahab today for adding groups
+
+New Relic access: Today discussed Nizam call stating that GWA.
+
+AWS VWAF need to check   ELK - Holding this access Niza																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	m & Michael for funding process.
+
+Jenkins issue related with Dev. team 551 job no AM code issue. jar or war issue related with infra error check
+with pom.xml file git lab
+
+service unavailable 
+
+26-05-2023
+==========
+Tasks:
+======
+
+SREGTSGR-104945
+26580: Tomcat version version less than 9.0.71 have "Request Smuggling" Vulnerability
+
+
+@Rakesh Moharana
+ Could you please check now  for jenkins issue
+ 
+29-05-2023
+==========
+Tasks:
+======
+
+
+https://amservicesvzwqa1.sdc.vzwcorp.com/am/rest/v1/profiles/getRoleAndDetails  Http/1.1 Service Unavailable
+restart preprod amtools ldap  for solution.  (ig-am-infra-vzi)   Prakash Ramalingam
+
+
+https://jenkins-vbg3.vpc.verizon.com/vbg3/job/GTS.HZ2V.ALL.JOBS/job/GTS.HZ2V.ALL.JOBS.BaseF[…]N-NPM.VBG-Builds/job/GTS.HZ2V.SBT.Builds.AKKA-MS.IAM3/ 
+
+jenkins job failed 443. worked with Prakash Ramalingam issue resolved issue.
+
+
+30-05-2023
+==========
+Tasks:
+======
+
+SDC HZ2V B2B HZ2V-B2B_AMSERVICES-SERVICE-BLUE-PR-SDC-YZ ResponseTime >200ms for 10 minutes for following 1 Servers: View incident time Data in NewRelic and View current Data in NewRelic
+Resource	ResponseTime
+HZ2V-B2B_AMSERVICES-SERVICE-BLUE-PR-SDC-YZ	 382.0
+
+Sreenivas Vummadi
+
+ Route File configurations for SIT Blue-Green / Active-Passive setup
+ -------------------------------------------------------------------
+ (Ravi Raja, Sudhakar Vasi reddy, Suryateja)
+ 
+We are in the process of doing a blue-green / active-passive setup for our QA environments. 
+As notified before, we would need your help in doing the route file configurations/changes based on the header parameters.
+
+Below are the VIPs newly created by Sudhakar, Please reach out to him for clarifications.
+mbqa2bg.sdc.vzwcorp.com   ------  Application URL
+-----------------------
+mbaccmgrqa2bg.sdc.vzwcorp.com ---IG load balancer
+-----------------------------
+
+mb versus kb   active server & passive server
+
+mbt1-> Active -> pointer -> IG1 -> loginpage
+mbt2-> Passive -> IG1 -> mbt2
+
+IG1 -> Passive : yes -> mbt2
+IG1 -> Passive : no ->  mbt1
+
+load balancer
+-------------
+mbt, route -xyz
+
+if host = "mbqa2bg.sdc.vzwcorp.com" fwd to mbt2  (deployment)
+if host = "mbqa2.sdc.vzwcorp.com" fwd to mbt2 
+
+QA team: header plot ------IG decide what server run backend.
+
+To start with, we have chosen QA2 for this exercise, so initially we need your help in doing this route configuration only for QA2. Later we can repeat the exercise for QA1 and QA3 as well.
+ 
+31-05-2023
+==========
+Tasks:
+======
+QA1,QA2 and qa3is not loading-showing up blank page. Please check     Verified the certificate is valid.
+
+@Srikanth Sirapuram
+ 
+@Naveen Rachakonda
+ 
+@Navaneethan Sankarbabu
+
+URL: https://mbaccmgrqa1.sdc.vzwcorp.com/account/business/signin (edited) 
+
+
+01-06-2023
+==========
+
+Tasks:
+======
+
+ALERT!! QA2 AKKA/IAM/KAFKA Storage for /app is MORETHAN 85% (01-06-23 EDT)
+We have cleared the huge log files and the current /app is 15%.
+
+qa4 iam service is not starting due to this ldap not reachable. rasied by Raisa mulla and worked with 
+Ramachandrarao Gude @ 9985999670 issue reolved.
+
+Idea about work flow manager? How to publish work flows qa4.Venkateswaramma Malluru
+
+
+
+02-06-2023
+==========
+
+Tasks:
+======
+
+QA2 AKKA/IAM/KAFKA  kafka zookeeper cvs iam services restated. RAisa mulla
+
+05-06-2023
+==========
+
+Tasks:
+=====
+
+I will reboot the QA1 server after 04:30 PM. Since the machine haven't rebooted last 47 days.
+Taken AMI backup, stop in AWS console and start the server.
+
+06-06-2023
+==========
+
+Tasks:
+=====
+
+QA4 is down, not able to access thee server. I am restarting the server AWS console.
+
+07-06-2023
+==========
+
+Tasks:
+=====
+
+Code release supported.
+
+
+08-06-2023
+==========
+
+Tasks:
+=====
+
+ALERT!! QA2 AKKA/IAM/KAFKA Storage for /app is MORETHAN 85% (08-06-23 EDT)
+Restart done below order:
+===================
+
+Zookeeper
+kafka
+CVS
+IAM
+REDIS
+
+09-06-2023
+==========
+
+Tasks:
+=====
+
+am webapps $ pwd
+/app/openam/forgerock/mybopenam01/webapps
+am webapps $ curl http://localhost:8080/batchjobs/health
+curl: (7) Failed connect to localhost:8080; Connection refused
+
+file name:  batchjobs.war
+
+if you are trying in some other tomcat, then yes
+in that am tomcat, vzauth should be deployed
+
+curl -v http://localhost:8480/batchjobs/health
+I tried this
+this gave me HTTP 404
+when you are accessing localhost:8080, some service should run at 8080
+if not, we will receive connection refused
+
+
+12/6/2023
+---------
+Tasks:
+-------
+
+https://mbaccmgrqa3.sdc.vzwcorp.com/   Http/1.1 Service Unavailable
+
+19/6/2023
+---------
+Tasks:
+-------
+
+Restarted logstash on below server.
+
+QA1 Safeguarding(AKKA/KAFKA) :- 10.119.33.172
+QA2 Safeguarding(AKKA/KAFKA) :- 10.119.37.252
+QA3 Safeguarding(AKKA/KAFKA) :- 10.119.39.188
+QA4 Safeguarding(AKKA/KAFKA) :- 10.119.37.243
