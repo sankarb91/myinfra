@@ -1,0 +1,46 @@
+ELK Configured:
+=================
+Step - 1
+===========
+cd /app/jdk/jdk1.8.0_351/jre/lib/security
+cp cacerts /app/infra/logstash/config/cacerts.jks
+cp logstash_ig_am.conf logstash_ig_am_ELK.conf
+
+Step 2
+========
+vi /app/infra/logstash/config/userELK_jaas.conf
+KafkaClient {
+     org.apache.kafka.common.security.scram.ScramLoginModule required
+     username="iaasadmin"
+     password="tim323@T";
+  };
+
+Step 3
+=========
+vi logstash_ig_am_ELK.conf
+output {
+    kafka {
+      acks => "1"
+      max_request_size => "20971520"
+      acks => "1"
+      topic_id => "vbg_onevz_sso_app_logs"
+      codec => json
+      bootstrap_servers => "b-1.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-2.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-3.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-4.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096"
+      security_protocol => "SASL_SSL"
+      sasl_mechanism => "SCRAM-SHA-512"
+      ssl_truststore_location  => "/app/infra/logstash/config/cacerts.jks"
+      jaas_path => "/app/infra/logstash/config/userELK_jaas.conf"
+    }
+  }
+
+Step 4
+=========
+vi pipelines.yml
+- pipeline.id: logstash_ig_am
+  path.config: "/app/infra/logstash/config/logstash_ig_am.conf"
+- pipeline.id: logstash_ig_am_ELK
+  path.config: "/app/infra/logstash/config/logstash_ig_am_ELK.conf"
+
+
+
+
