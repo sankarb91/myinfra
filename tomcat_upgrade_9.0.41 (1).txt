@@ -1,0 +1,99 @@
+Instances:
+10.119.37.136 – app server
+Existing Tomcat Version 8.5.27.0
+Latest Tomcat Path: /tmp
+
+Step 1.Login as WebLogic user
+             pbrun list
+             pbrun weblogic_bash
+Step 2.Copy the tomcat file apache-tomcat-9.0.41 from QA3 server 10.119.35.226 under /tmp path in 10.119.37.136
+             Copy the JDK file jdk1.8.0_73 from QA3 server 10.119.35.226 server under /app/jdk/ in 10.119.37.136
+             Winscp files to 10.119.37.136
+Step 3.Move to JVM path
+             cd /app/appserver/
+             ls –l  (List the JVM)
+             cd epb_epam01
+Step 4.Kill the Process before tomcat upgrade
+            ps -ef | grep epb_epam01           
+            kill -9 31416
+Step 5.Take backup of both lib and bin folder
+           mv bin bin_07272021
+           mv lib lib_07272021
+Step 6.Copy latest tomcat version bin and lib folders from /tmp to current directory inside JVM
+           cp -r /tmp/apache-tomcat-9.0.41/bin .
+           cp -r /tmp/apache-tomcat-9.0.41/lib .
+Step 7.Take difference in latest lib folder copied and the backup taken previously
+             diff -r lib lib_1062021 | grep "Only in "
+Output will have all the extra jar files present in backup taken lib_07272021
+
+Example:
+10-119-37-136:/app/appserver/epb_epam01$  diff -r lib lib_07272021 | grep "Only in "
+Only in lib_07272021: commons-codec-1.9.jar
+Only in lib_07272021: ecj-4.6.3.jar
+Only in lib_07272021: lib.tar
+Only in lib_07272021: ojdbc5.jar
+Only in lib_07272021: ojdbc6.jar
+Only in lib_07272021: ojdbc8.jar
+Only in lib_07272021: tomcat-JNDI-custome-1.0.0-SNAPSHOT.jar
+Note : Need to copy only those which are extra in backup folder. If something extra in lib folder need to remove it using rm command
+Step 8.Copy all these jar files “Only in lib_07272021” to latest lib folder 
+            cd lib 
+            cp -r ../lib_07272021/commons-codec-1.9.jar .
+            cp -r ../lib_07272021/ecj-4.6.3.jar .
+            cp -r ../lib_07272021/ojdbc5.jar .
+            cp -r ../lib_07272021/ojdbc6.jar .
+            cp -r ../lib_07272021/ojdbc8.jar .
+            cp -r ../lib_07272021/tomcat-JNDI-custome-1.0.0-SNAPSHOT.jar .
+Step 9. Copy startup script from backup folder to current bin folder
+              cd bin
+              cp -r ../bin_1062021/start_* .
+Step 10. Modify JDK version start_epb_epam01.sh  in bin folder 
+                vi start_epb_epam01.sh
+                 JAVA_HOME=/app/jdk/jdk1.8.0_73
+set jdk1.8.0_73 and change executable permission for bin folder
+                cd ..
+                chmod -R 755 bin
+Step 11. Check latest Tomcat version under bin folder ./version.sh 
+                cd bin
+                ./version.sh
+Here if you get error as below
+Neither the JAVA_HOME nor the JRE_HOME environment variable is defined
+At least one of these environment variable is needed to run this program
+Set JAVA_HOME
+ls /app/jdk/ 
+export JAVA_HOME=/app/jdk/jdk1.8.0_73
+Now when we execute ./version.sh it will show the latest version upgraded
+10-119-37-136:/app/appserver/epb_epam01/bin$  ./version.sh
+Using CATALINA_BASE:   /app/appserver/epb_epam01
+Using CATALINA_HOME:   /app/appserver/epb_epam01
+Using CATALINA_TMPDIR: /app/appserver/epb_epam01/temp
+Using JRE_HOME:        /app/jdk/jdk1.8.0_73/
+Using CLASSPATH:       /app/appserver/epb_epam01/bin/bootstrap.jar:/app/appserver/epb_epam01/bin/tomcat-juli.jar
+Using CATALINA_OPTS:
+Server version: Apache Tomcat/9.0.41
+Server built:   Dec 3 2020 11:43:00 UTC
+Server number:  9.0.41.0
+OS Name:        Linux
+OS Version:     3.10.0-1160.25.1.el7.x86_64
+Architecture:   amd64
+JVM Version:    1.8.0_73-b02
+JVM Vendor:     Oracle Corporation 
+Step 11. Start the Tomcat service
+                ./start_epb_epam01.sh
+                ps -ef | grep epb_epam01
+Step 12. Verify from latest log file whether Tomcat version upgraded is proper
+                cd /log
+                cd tomcat/
+                cd epb_epam01.catalina.out
+                grep -i "Apache Tomcat/9.0.41" srv01_mb01.catalina.out
+
+
+
+
+JAVA_HOME=/app/jdk/jdk1.8.0_181 epb_sms01
+JAVA_HOME=/app/jdk/jdk1.8.0_121 epb_vlt01
+JAVA_HOME=/app/jdk/jdk1.8.0_181
+
+
+
+
