@@ -1,0 +1,33 @@
+How to remove the newrelic logs:
+
+                         df -h /app
+                         			 
+76  2023-09-19 01:51:07 du -a /app | sort -n -r | head -n 10
+   77  2023-09-19 01:51:21 cd /app/infra/newrelic/logs/
+   78  2023-09-19 01:51:28 ls -lrt newrelic_agent.log
+   79  2023-09-19 01:51:32 du -sh newrelic_agent.log
+   80  2023-09-19 01:51:43 ls -lrt
+   81  2023-09-19 01:51:56 rm -rf newrelic_agent.log
+   82  2023-09-19 01:51:59 ls -lrt
+   83  2023-09-19 01:52:15 du -sh server1.out server0.out server2.out
+   84  2023-09-19 01:52:28 lsof | grep 'deleted'
+   85  2023-09-19 01:52:43 clear
+   86  2023-09-19 01:52:49 lsof | grep -i /app/infra/newrelic/logs/newrelic_agent.log (deleted)
+   87  2023-09-19 01:53:05 lsof | grep -i /app/infra/newrelic/logs/newrelic_agent.log
+   88  2023-09-19 01:55:04 cd /proc/3260742/fd
+   89  2023-09-19 01:55:11 ls -lrt | grep 'deleted'
+   90  2023-09-19 01:55:21 > /proc/3260742/fd/25
+   91  2023-09-19 01:55:25 df -hP /app
+   92  2023-09-19 01:55:50 cd /proc/2019034/fd
+   93  2023-09-19 01:55:56 ls -lrt | grep 'deleted'
+   94  2023-09-19 01:56:07 > /proc/2019034/fd/25
+   95  2023-09-19 01:56:13 df -hP /app
+   96  2023-09-19 01:56:18 clear
+   97  2023-09-19 01:56:20 df -h
+   98  2023-09-19 01:56:24 cd
+   99  2023-09-19 01:56:25 clear
+  100  2023-09-19 01:56:27 df -h
+  101  2023-09-19 01:56:29 clear
+  102  2023-09-19 01:56:33 df -h /app
+  103  2023-09-19 01:56:36 date
+  104  2023-09-19 01:57:00 /app/scripts/status
