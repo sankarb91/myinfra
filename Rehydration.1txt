@@ -1,0 +1,704 @@
+am@10-119-34-87:/app/forgerock/myb/mybopenigtc02/bin # ^C
+am@10-119-34-87:/app/forgerock/myb/mybopenigtc02/bin # cd /app/openig
+am@10-119-34-87:/app/openig # ls -lrt
+total 131832
+-rw-r--r--    1 am am     16738 Apr 16  2019 RUNNING.txt
+-rw-r--r--    1 am am      7320 Apr 16  2019 RELEASE-NOTES
+-rw-r--r--    1 am am      3334 Apr 16  2019 README.md
+-rw-r--r--    1 am am      1777 Apr 16  2019 NOTICE
+-rw-r--r--    1 am am     58153 Apr 16  2019 LICENSE
+drwxr-xr-x    2 am am      4096 Apr 16  2019 lib
+-rw-r--r--    1 am am      6237 Apr 16  2019 CONTRIBUTING.md
+-rw-r--r--    1 am am     20106 Apr 16  2019 BUILDING.txt
+drwxr-xr-x    3 am am      4096 Jul 12  2019 data
+drwxr-xr-x    3 am am      4096 Oct 30  2019 scripts
+drwxrwxr-x    7 am am      4096 Jul 24  2020 config-07-24
+drwxrwxr-x    3 am am      4096 Sep  5  2021 backup-sep-05-logout
+drwxr-xr-x    4 am am      4096 Sep 20  2021 ROOT-09-27-backup
+drwxr-xr-x    4 am am      4096 Sep 30  2021 ROOT-OLD
+drwxr-xr-x    2 am am      4096 Feb  3  2022 IGSampleApp
+-rw-rw-r--    1 am am      1174 Feb 18  2022 secrets.zip
+drwxrwxr-x    2 am am      4096 Mar 23  2022 secrets
+drwxr-xr-x    2 am am      4096 Mar 31  2022 deploy_backup
+drwxr-xr-x    3 am am      4096 Mar 31  2022 work
+-rw-r--r--    1 am am 105074626 Feb 13  2023 webapp
+-rw-rw-r--    1 am am  28835840 Feb 14  2023 openig_configQA2.tar
+drwxrwxr-x    2 am am      4096 Mar 22  2023 heapdumps
+drwxr-xr-x    2 am am      4096 Jul 25 18:41 bin
+drwxrwxr-x   11 am am      4096 Aug 29 14:29 config
+drwxr-xr-x    3 am am      4096 Sep  7 14:38 conf
+drwxr-xr-x    4 am am      4096 Sep 26 15:13 webapps
+drwxr-xr-x 1634 am am    126976 Sep 26 15:16 tmp
+drwxr-xr-x    2 am am    684032 Oct  6 13:49 temp
+drwxr-xr-x    3 am am     61440 Oct  7 11:44 logs
+am@10-119-34-87:/app/openig # ^C
+am@10-119-34-87:/app/openig # clear
+am@10-119-34-87:/app/openig # ps -ef | grep openam
+am       2833281       1  0 Oct05 ?        00:11:10 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/openam/forgerock/mybconsole/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Xmx3072m -Xms3072m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openam/mybopenam01/mybopenam01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -DSERVER_INSTANCE=mybconsole -javaagent:/app/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBCONSOLE-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybconsole:8009 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -Dignore.endorsed.dirs= -classpath /app/openam/forgerock/mybconsole/bin/bootstrap.jar:/app/openam/forgerock/mybconsole/bin/tomcat-juli.jar -Dcatalina.base=/app/openam/forgerock/mybconsole -Dcatalina.home=/app/openam/forgerock/mybconsole -Djava.io.tmpdir=/app/openam/forgerock/mybconsole/temp org.apache.catalina.startup.Bootstrap start
+am       2833802       1  0 Oct05 ?        00:24:14 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/openam/forgerock/mybopenam01/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=8555,server=y,suspend=n -Xmx3072m -Xms3072m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openam/mybopenam01/mybopenam01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENAM-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenam01:8480 -DSERVER_INSTANCE=mybopenam01 -Dservername=10-119-34-87.ebiz.verizon.com -DSECURE_BOOTSTRAP_SERVERS=10.119.37.252:9092,10.119.37.252:9093,10.119.37.252:9094 -DKAFKA_CREDENTIALS_FILE_PATH=/app/openam/forgerock/mybopenam01/conf/secure_kafka.properties -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json -Dprevoty.disable_csrf -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dlog4j.formatMsgNoLookups=true -Dlogback.configurationFile=/app/openam/custom/properties/logback.xml -Dignore.endorsed.dirs= -classpath /app/openam/forgerock/mybopenam01/bin/bootstrap.jar:/app/openam/forgerock/mybopenam01/bin/tomcat-juli.jar -Dcatalina.base=/app/openam/forgerock/mybopenam01 -Dcatalina.home=/app/openam/forgerock/mybopenam01 -Djava.io.tmpdir=/app/openam/forgerock/mybopenam01/temp org.apache.catalina.startup.Bootstrap start
+am       3101167       1  0 Oct06 ?        00:04:43 /app/jdk/jdk1.8.0_351/bin/java -Djava.util.logging.config.file=/app/openam/forgerock/epb_soa01/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -d64 -Xmx3072m -Xms3072m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openam/epb_soa01/epb_soa01_gc.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=90 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.license_key=15a5e4b89f79ab30d40c30fc76211564FFFFNRAL -Dnewrelic.config.app_name=HZ2V-B2B_AMSERVICES-SERVICE-GREEN-QA-AWSW -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-b2b_amservices -DB2B_LOGS_PATH=/log/openam/epb_soa01 -DB2B_LOGS_PATH=/log/openam/epb_soa01 -DB2b_port=8251 -DB2B_CONNECTION_TIMEOUT_SEC=20000 -DB2B_REDIRECT_PORT=8443 -DB2B_MAX_THREADS=5000 -DB2B_ACCEPT_COUNT=3000 -DB2b_env=QA2 -DB2B_DC=QA2 -DB2B_ROOT_LOG_LEVEL=error -DB2B_KAFKA_SERVERS=10-119-37-252.ebiz.verizon.com:9092,10-119-37-252.ebiz.verizon.com:9093,10-119-37-252.ebiz.verizon.com:9094 -DB2B_KAFKA_SASL=PLAIN -DB2B_KAFKA_JAAS=org.apache.kafka.common.security.plain.PlainLoginModule -DB2B_KAFKA_SECURITY=SASL_PLAINTEXT -DB2B_KAFKA_USER=admin -DB2B_KAFKA_PASS=admin -DB2B_KAFKA_TOPIC=b2b_amservices_events -DB2B_KAFKA_SERVERS_ELK=b-1.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-2.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-3.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-4.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096 -DB2B_KAFKA_SASL_ELK=SCRAM-SHA-512 -DB2B_KAFKA_JAAS_ELK=org.apache.kafka.common.security.scram.ScramLoginModule -DB2B_KAFKA_SECURITY_ELK=SASL_SSL -DB2B_KAFKA_USER_ELK=iaasadmin -DB2B_KAFKA_PASS_ELK=tim323@T -DB2B_KAFKA_TOPIC_ELK=vbg_onevz_sso_app_logs -DB2B_KAFKA_SERVERS_AUDIT=10-119-37-252.ebiz.verizon.com:9092,10-119-37-252.ebiz.verizon.com:9093,10-119-37-252.ebiz.verizon.com:9094 -DB2B_KAFKA_SASL_AUDIT=PLAIN -DB2B_KAFKA_JAAS_AUDIT=org.apache.kafka.common.security.plain.PlainLoginModule -DB2B_KAFKA_SECURITY_AUDIT= -DB2B_KAFKA_USER_AUDIT=admin -DB2B_KAFKA_PASS_AUDIT=admin -DB2B_KAFKA_TOPIC_AUDIT=b2b_audit_events -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty_raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty_agentrasp -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dprevoty.disable_content -Dprevoty.disable_csrf -Dignore.endorsed.dirs= -classpath /app/openam/forgerock/epb_soa01/bin/bootstrap.jar:/app/openam/forgerock/epb_soa01/bin/tomcat-juli.jar -Dcatalina.base=/app/openam/forgerock/epb_soa01 -Dcatalina.home=/app/openam/forgerock/epb_soa01 -Djava.io.tmpdir=/app/openam/forgerock/epb_soa01/temp org.apache.catalina.startup.Bootstrap start
+am       3141291 3140829  0 11:50 pts/3    00:00:00 grep --color=auto openam
+am@10-119-34-87:/app/openig # ps -ef | grep openig
+am       1387612       1 99 Sep26 ?        21-20:27:54 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/openig/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=4000,server=y,suspend=n -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc01/mybopenigtc01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC01-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openig/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc01:8075 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -DSERVER_INSTANCE=mybopenigtc01 -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json -Dprevoty.disable_csrf -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dlog4j.formatMsgNoLookups=true -Dignore.endorsed.dirs= -classpath /app/openig/bin/bootstrap.jar:/app/openig/bin/tomcat-juli.jar -Dcatalina.base=/app/openig -Dcatalina.home=/app/openig -Djava.io.tmpdir=/app/openig/temp org.apache.catalina.startup.Bootstrap start
+am       1404649       1  0 Aug29 ?        05:39:58 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/openigvpstest/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=localhost:8000,server=y,suspend=n -d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djava.io.tmpdir=/app/openigvpstest/temp org.apache.catalina.startup.Bootstrap start
+am       3141345 3140829  0 11:52 pts/3    00:00:00 grep --color=auto openig
+am       3354290       1  0 Sep12 ?        00:37:27 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/forgerock/myb/mybopenigtc02/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Dfile.encoding=UTF-8 -Djavax.net.ssl.KeyStore=/app/jdk/jdk1.8.0_111/jre/lib/security/ipr-qa-iginternal/iginternal.jks -Djavax.net.ssl.KeyStorePassword=changeit -Djavax.net.ssl.trustStoreType=JKS -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC02-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc02:8085 -Dnewrelic.config.label=AppId:HZ2V;Environment:QA1;Application:MYBOPENIG02 -DSERVER_INSTANCE=mybopenigtc02 -Dlog4j.formatMsgNoLookups=true -Xms4096m -Xmx4096m -Dignore.endorsed.dirs= -classpath /app/forgerock/myb/mybopenigtc02/bin/bootstrap.jar:/app/forgerock/myb/mybopenigtc02/bin/tomcat-juli.jar -Dcatalina.base=/app/forgerock/myb/mybopenigtc02 -Dcatalina.home=/app/forgerock/myb/mybopenigtc02 -Djava.io.tmpdir=/app/forgerock/myb/mybopenigtc02/temp org.apache.catalina.startup.Bootstrap start
+am@10-119-34-87:/app/openig # ls -lrt
+total 131832
+-rw-r--r--    1 am am     16738 Apr 16  2019 RUNNING.txt
+-rw-r--r--    1 am am      7320 Apr 16  2019 RELEASE-NOTES
+-rw-r--r--    1 am am      3334 Apr 16  2019 README.md
+-rw-r--r--    1 am am      1777 Apr 16  2019 NOTICE
+-rw-r--r--    1 am am     58153 Apr 16  2019 LICENSE
+drwxr-xr-x    2 am am      4096 Apr 16  2019 lib
+-rw-r--r--    1 am am      6237 Apr 16  2019 CONTRIBUTING.md
+-rw-r--r--    1 am am     20106 Apr 16  2019 BUILDING.txt
+drwxr-xr-x    3 am am      4096 Jul 12  2019 data
+drwxr-xr-x    3 am am      4096 Oct 30  2019 scripts
+drwxrwxr-x    7 am am      4096 Jul 24  2020 config-07-24
+drwxrwxr-x    3 am am      4096 Sep  5  2021 backup-sep-05-logout
+drwxr-xr-x    4 am am      4096 Sep 20  2021 ROOT-09-27-backup
+drwxr-xr-x    4 am am      4096 Sep 30  2021 ROOT-OLD
+drwxr-xr-x    2 am am      4096 Feb  3  2022 IGSampleApp
+-rw-rw-r--    1 am am      1174 Feb 18  2022 secrets.zip
+drwxrwxr-x    2 am am      4096 Mar 23  2022 secrets
+drwxr-xr-x    2 am am      4096 Mar 31  2022 deploy_backup
+drwxr-xr-x    3 am am      4096 Mar 31  2022 work
+-rw-r--r--    1 am am 105074626 Feb 13  2023 webapp
+-rw-rw-r--    1 am am  28835840 Feb 14  2023 openig_configQA2.tar
+drwxrwxr-x    2 am am      4096 Mar 22  2023 heapdumps
+drwxr-xr-x    2 am am      4096 Jul 25 18:41 bin
+drwxrwxr-x   11 am am      4096 Aug 29 14:29 config
+drwxr-xr-x    3 am am      4096 Sep  7 14:38 conf
+drwxr-xr-x    4 am am      4096 Sep 26 15:13 webapps
+drwxr-xr-x 1634 am am    126976 Sep 26 15:16 tmp
+drwxr-xr-x    2 am am    684032 Oct  6 13:49 temp
+drwxr-xr-x    3 am am     61440 Oct  7 11:44 logs
+am@10-119-34-87:/app/openig # cd bin/
+am@10-119-34-87:/app/openig/bin # pwd
+/app/openig/bin
+am@10-119-34-87:/app/openig/bin # ls -lrt * .sh
+ls: cannot access '.sh': No such file or directory
+-rwxr-xr-x 1 am am   1908 Apr 16  2019  version.sh
+-rw-r--r-- 1 am am   2026 Apr 16  2019  version.bat
+-rwxr-xr-x 1 am am   5515 Apr 16  2019  tool-wrapper.sh
+-rw-r--r-- 1 am am   4574 Apr 16  2019  tool-wrapper.bat
+-rw-r--r-- 1 am am 418183 Apr 16  2019  tomcat-native.tar.gz
+-rw-r--r-- 1 am am  49336 Apr 16  2019  tomcat-juli.jar
+-rwxr-xr-x 1 am am   1904 Apr 16  2019  startup.sh
+-rw-r--r-- 1 am am   2022 Apr 16  2019  startup.bat
+-rwxr-xr-x 1 am am   1902 Apr 16  2019  shutdown.sh
+-rw-r--r-- 1 am am   2020 Apr 16  2019  shutdown.bat
+-rwxr-xr-x 1 am am   3680 Apr 16  2019  setclasspath.sh
+-rw-r--r-- 1 am am   3460 Apr 16  2019  setclasspath.bat
+-rwxr-xr-x 1 am am   1965 Apr 16  2019  digest.sh
+-rw-r--r-- 1 am am   2091 Apr 16  2019  digest.bat
+-rwxr-xr-x 1 am am   8508 Apr 16  2019  daemon.sh
+-rwxr-xr-x 1 am am   1922 Apr 16  2019  configtest.sh
+-rw-r--r-- 1 am am   2040 Apr 16  2019  configtest.bat
+-rw-r--r-- 1 am am 207125 Apr 16  2019  commons-daemon-native.tar.gz
+-rw-r--r-- 1 am am  25145 Apr 16  2019  commons-daemon.jar
+-rw-r--r-- 1 am am   1703 Apr 16  2019  catalina-tasks.xml
+-rwxr-xr-x 1 am am  24218 Apr 16  2019  catalina.sh
+-rw-r--r-- 1 am am  15900 Apr 16  2019  catalina.bat
+-rw-r--r-- 1 am am  35051 Apr 16  2019  bootstrap.jar
+-rwxr-xr-x 1 am am   2050 Feb 24  2021  start_mybopenigtc01.sh_bkp
+-rw-r--r-- 1 am am  11843 Apr 21  2021 '(RouterHandler.java:403)'
+-rwxr-xr-x 1 am am   2185 Aug 26  2021  start_mybopenigtc01.sh_bkp0826
+-rwxr-xr-x 1 am am   2968 Aug 31  2021  start_mybopenigtc01.sh_vps_BKP
+-rwxr-xr-x 1 am am   3610 Dec 13  2021  start_mybopenigtc01.sh_bckup
+-rw-rw-r-- 1 am am      0 Nov 11  2022  ps
+-rw-r--r-- 1 am am      1 Dec  7  2022  catalina.pid
+-rw-r--r-- 1 am am   2163 Mar 16  2023  home
+-rwxrwxr-x 1 am am    672 Apr  6  2023  setenv.sh
+-rwxr-xr-x 1 am am   4803 Jul 25 18:41  start_mybopenigtc01.sh
+am@10-119-34-87:/app/openig/bin # am@10-119-34-87:/app/openig # ps -ef | grep openig
+erLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=4000,server=y,suspend=n -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc01/mybopenigtc01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC01-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openig/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc01:8075 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -DSERVER_INSTANCE=mybopenigtc01 -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json -Dprevoty.disable_csrf -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dlog4j.formatMsgNoLookups=true -Dignore.endorsed.dirs= -classpath /app/openig/bin/bootstrap.jar:/app/openig/bin/tomcat-juli.jar -Dcatalina.base=/app/openig -Dcatalina.home=/app/openig -Djava.io.tmpdir=/app/openig/temp org.apache.catalina.startup.Bootstrap start
+am       1404649       1  0 Aug29 ?        05:39:58 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/openigvpstest/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webbash: am@10-119-34-87:/app/openig: No such file or directory
+resources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=localhost:8000,server=y,suspend=n -d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djavaam@10-119-34-87:/appng.config.file=/app/openig/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=4000,server=y,suspend=n -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc01/mybopenigtc01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC01-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openig/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc01:8075 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -DSERVER_INSTANCE=mybopenigtc01 -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json -Dprevoty.disable_csrf -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dlog4j.formatMsgNoLookups=true -Dignore.endorsed.dirs= -classpath /app/openig/bin/bootstrap.jar:/app/openig/bin/tomcat-juli.jar -Dcatalina.base=/app/openig -Dcatalina.home=/app/openig -Djava.io.tmpdir=/app/openig/temp org.apache.catalina.startup.Bootstrap start
+bash: am: command not found
+bash: Environment:QA2: command not found
+bash: Application:MYBOPENIG01: command not found
+am@10-119-34-87:/app/openig/bin # am       1404649       1  0 Aug29 ?        05:39:58 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/openigvpstest/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=localhost:8000,server=y,suspend=n -d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djava.io.tmpdir=/app/openigvpstest/temp org.apache.catalina.startup.Bootstrap start
+bash: am: command not found
+bash: Environment:QA2: command not found
+bash: Application:MYBOPENIG01: command not found
+am@10-119-34-87:/app/openig/bin # am       3141345 3140829  0 11:52 pts/3    00:00:00 grep --color=auto openig
+bash: am: command not found
+am@10-119-34-87:/app/openig/bin # am       3354290       1  0 Sep12 ?        00:37:27 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/forgerock/myb/mybopenigtc02/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Dfile.encoding=UTF-8 -Djavax.net.ssl.KeyStore=/app/jdk/jdk1.8.0_111/jre/lib/security/ipr-qa-iginternal/iginternal.jks -Djavax.net.ssl.KeyStorePassword=changeit -Djavax.net.ssl.trustStoreType=JKS -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC02-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc02:8085 -Dnewrelic.config.label=AppId:HZ2V;Environment:QA1;Application:MYBOPENIG02 -DSERVER_INSTANCE=mybopenigtc02 -Dlog4j.formatMsgNoLookups=true -Xms4096m -Xmx4096m -Dignore.endorsed.dirs= -classpath /app/forgerock/myb/mybopenigtc02/bin/bootstrap.jar:/app/forgerock/myb/mybopenigtc02/bin/tomcat-juli.jar -Dcatalina.base=/app/forgerock/myb/mybopenigtc02 -Dcatalina.home=/app/forgerock/myb/mybopenigtc02 -Djava.io.tmpdir=/app/forgerock/myb/mybopenigtc02/temp org.apache.catalina.startup.Bootstrap start
+bash: am: command not found
+bash: Environment:QA1: command not found
+bash: Application:MYBOPENIG02: command not found
+am@10-119-34-87:/app/openig/bin # am@10-119-34-87:/app/openig # ps -ef | grep openig
+.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djavabash: am@10-119-34-87:/app/openig: No such file or directory
+am@10-119-34-87:/app/openig/bin # am       1387612       1 99 Sep26 ?        21-20:27:54 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/openig/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=4000,server=y,suspend=n -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc01/mybopenigtc01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC01-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openig/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc01:8075 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -DSERVER_INSTANCE=mybopenigtc01 -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json -Dprevoty.disable_csrf -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dlog4j.formatMsgNoLookups=true -Dignore.endorsed.dirs= -classpath /app/openig/bin/bootstrap.jar:/app/openig/bin/tomcat-juli.jar -Dcatalina.base=/app/openig -Dcatalina.home=/app/openig -Djava.io.tmpdir=/app/openig/temp org.apache.catalina.startup.Bootstrap start
+bash: am: command not found
+bash: Environment:QA2: command not found
+bash: Application:MYBOPENIG01: command not found
+am@10-119-34-87:/app/openig/bin # am       1404649       1  0 Aug29 ?        05:39:58 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/openigvpstest/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=localhost:8000,server=y,suspend=n -d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djava.io.tmpdir=/app/openigvpstest/temp org.apache.catalina.startup.Bootstrap start
+bash: am: command not found
+bash: Environment:QA2: command not found
+bash: Application:MYBOPENIG01: command not found
+am@10-119-34-87:/app/openig/bin # am       3141345 3140829  0 11:52 pts/3    00:00:00 grep --color=auto openig
+bash: am: command not found
+am@10-119-34-87:/app/openig/bin # am       3354290       1  0 Sep12 ?        00:37:27 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/forgerock/myb/mybopenigtc02/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Dfile.encoding=UTF-8 -Djavax.net.ssl.KeyStore=/app/jdk/jdk1.8.0_111/jre/lib/security/ipr-qa-iginternal/iginternal.jks -Djavax.net.ssl.KeyStorePassword=changeit -Djavax.net.ssl.trustStoreType=JKS -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC02-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc02:8085 -Dnewrelic.config.label=AppId:HZ2V;Environment:QA1;Application:MYBOPENIG02 -DSERVER_INSTANCE=mybopenigtc02 -Dlog4j.formatMsgNoLookups=true -Xms4096m -Xmx4096m -Dignore.endorsed.dirs= -classpath /app/forgerock/myb/mybopenigtc02/bin/bootstrap.jar:/app/forgerock/myb/mybopenigtc02/bin/tomcat-juli.jar -Dcatalina.base=/app/forgerock/myb/mybopenigtc02 -Dcatalina.home=/app/forgerock/myb/mybopenigtc02 -Djava.io.tmpdir=/app/forgerock/myb/mybopenigtc02/temp org.apache.catalina.startup.Bootstrap start
+bash: am: command not found
+bash: Environment:QA1: command not found
+bash: Application:MYBOPENIG02: command not found
+am@10-119-34-87:/app/openig/bin # am@10-119-34-87:/app/openig # ps -ef | grep openig
+=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc01/mybopenigtc01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC01-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openig/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc01:8075 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -DSERVER_INSTANCE=mybopenigtc01 -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json -Dprevoty.disable_csrf -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dlog4j.formatMsgNoLookups=true -Dignore.endorsed.dirs= -classpath /app/openig/bin/bootstrap.jar:/app/openig/bin/tomcat-juli.jar -Dcatalina.base=/app/openig -Dcatalina.home=/app/openig -Djava.io.tmpdir=/app/openig/temp org.apache.catalina.startup.Bootstrap start
+am       1404649       1  0 Aug29 ?        05:39:58 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/openigvpstest/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=localhost:8000,server=y,suspend=n -d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-bash: am@10-119-34-87:/app/openig: No such file or directory
+GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djavaam@10-119-34-87:/app/openig/binng.config.file=/app/openig/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=4000,server=y,suspend=n -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc01/mybopenigtc01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC01-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openig/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc01:8075 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -DSERVER_INSTANCE=mybopenigtc01 -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json -Dprevoty.disable_csrf -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dlog4j.formatMsgNoLookups=true -Dignore.endorsed.dirs= -classpath /app/openig/bin/bootstrap.jar:/app/openig/bin/tomcat-juli.jar -Dcatalina.base=/app/openig -Dcatalina.home=/app/openig -Djava.io.tmpdir=/app/openig/temp org.apache.catalina.startup.Bootstrap start
+bash: am: command not found
+bash: Environment:QA2: command not found
+bash: Application:MYBOPENIG01: command not found
+am@10-119-34-87:/app/openig/bin # am       1404649       1  0 Aug29 ?        05:39:58 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/openigvpstest/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=localhost:8000,server=y,suspend=n -d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djava.io.tmpdir=/app/openigvpstest/temp org.apache.catalina.startup.Bootstrap start
+bash: am: command not found
+bash: Environment:QA2: command not found
+bash: Application:MYBOPENIG01: command not found
+am@10-119-34-87:/app/openig/bin # am       3141345 3140829  0 11:52 pts/3    00:00:00 grep --color=auto openig
+bash: am: command not found
+am@10-119-34-87:/app/openig/bin # am       3354290       1  0 Sep12 ?        00:37:27 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/forgerock/myb/mybopenigtc02/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Dfile.encoding=UTF-8 -Djavax.net.ssl.KeyStore=/app/jdk/jdk1.8.0_111/jre/lib/security/ipr-qa-iginternal/iginternal.jks -Djavax.net.ssl.KeyStorePassword=changeit -Djavax.net.ssl.trustStoreType=JKS -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC02-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc02:8085 -Dnewrelic.config.label=AppId:HZ2V;Environment:QA1;Application:MYBOPENIG02 -DSERVER_INSTANCE=mybopenigtc02 -Dlog4j.formatMsgNoLookups=true -Xms4096m -Xmx4096m -Dignore.endorsed.dirs= -classpath /app/forgerock/myb/mybopenigtc02/bin/bootstrap.jar:/app/forgerock/myb/mybopenigtc02/bin/tomcat-juli.jar -Dcatalina.base=/app/forgerock/myb/mybopenigtc02 -Dcatalina.home=/app/forgerock/myb/mybopenigtc02 -Djava.io.tmpdir=/app/forgerock/myb/mybopenigtc02/temp org.apache.catalina.startup.Bootstrap start
+bash: am: command not found
+bash: Environment:QA1: command not found
+bash: Application:MYBOPENIG02: command not found
+am@10-119-34-87:/app/openig/bin # am       3354290       1  0 Sep12 ?        00:37:27 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/forgerock/myb/mybopenigtc02/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Dfile.encoding=UTF-8 -Djavax.net.ssl.KeyStore=/app/jdk/jdk1.8.0_111/jre/lib/security/ipr-qa-iginternal/iginternal.jks -Djavax.net.ssl.KeyStorePassword=changeit -Djavax.net.ssl.trustStoreType=JKS -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC02-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc02:8085 -Dnewrelic.config.label=AppId:HZ2V;Environment:QA1;Application:MYBOPENIG02 -DSERVER_INSTANCE=mybopenigtc02 -Dlog4j.formatMsgNoLookups=true -Xms4096m -Xmx4096m -Dignore.endorsed.dirs= -classpath /app/forgerock/myb/mybopenigtc02/bin/bootstrap.jar:/app/forgerock/myb/mybopenigtc02/bin/tomcat-juli.jar -Dcatalina.base=/app/forgerock/myb/mybopenigtc02 -Dcatalina.home=/app/forgerock/myb/mybopenigtc02 -Djava.io.tmpdir=/app/forgerock/myb/mybopenigtc02/temp org.apache.catalina.startup.Bootstrap start^C
+am@10-119-34-87:/app/openig/bin # cd /app/forgerock/
+am@10-119-34-87:/app/forgerock # ls -lrt
+total 16
+drwxr-xr-x 9 am am 4096 Feb 27  2023 apache-tomcat-8.5.87
+drwxrwxr-x 6 am am 4096 Apr 21 14:30 amster
+drwxrwxr-x 3 am am 4096 May 10 02:27 opendj
+drwxrwxr-x 4 am am 4096 Sep 18 21:12 myb
+am@10-119-34-87:/app/forgerock # cd myb
+am@10-119-34-87:/app/forgerock/myb # ls -lrt
+total 176476
+drwxr-xr-x 16 am am      4096 Sep 28  2021 mybopenigtc02
+-rwxr-xr-x  1 am am  60094577 Aug 18 10:40 registrationApi.jar
+-rw-rw-r--  1 am am 120596616 Sep 18 21:12 vsbdrciam.zip
+drwxr-xr-x  6 am am      4096 Oct  4 15:05 vsbdrciam
+am@10-119-34-87:/app/forgerock/myb # cd mybopenigtc02/
+am@10-119-34-87:/app/forgerock/myb/mybopenigtc02 # ls -lrt
+total 10860
+-rw-r--r--  1 am am    7320 Sep 28  2021 RELEASE-NOTES
+-rw-rw-r--  1 am am     951 Sep 28  2021 server.key
+drwxrwxr-x  3 am am    4096 Sep 28  2021 scripts
+-rw-r--r--  1 am am   16738 Sep 28  2021 RUNNING.txt
+drwxrwxr-x  2 am am    4096 Sep 28  2021 secrets
+-rw-r--r--  1 am am    6237 Sep 28  2021 CONTRIBUTING.md
+drwxr-xr-x  2 am am    4096 Sep 28  2021 lib
+drwxr-xr-x  3 am am    4096 Sep 28  2021 work
+-rw-r--r--  1 am am    1777 Sep 28  2021 NOTICE
+-rw-r--r--  1 am am   58153 Sep 28  2021 LICENSE
+drwxr-xr-x  3 am am    4096 Sep 28  2021 data
+drwxrwxr-x  2 am am    4096 Sep 28  2021 IGSampleApp
+-rw-r--r--  1 am am    3334 Sep 28  2021 README.md
+-rw-r--r--  1 am am  849920 Sep 28  2021 bin.tar
+-rw-rw-r--  1 am am 9659930 Sep 28  2021 tmp.txt
+-rw-r--r--  1 am am   20106 Sep 28  2021 BUILDING.txt
+drwxrwxr-x  5 am am    4096 Aug 24  2022 config
+drwxr-xr-x  2 am am    4096 Nov 22  2022 deploy_backup
+drwxr-xr-x  5 am am    4096 Dec  9  2022 conf
+drwxr-xr-x  4 am am    4096 Apr  6  2023 webapps
+drwxr-xr-x  2 am am    4096 Sep 12 12:21 bin
+drwxr-xr-x  2 am am  385024 Sep 12 12:21 temp
+drwxr-xr-x 81 am am    4096 Sep 12 12:22 tmp
+drwxr-xr-x  3 am am   32768 Oct  6 12:23 logs
+am@10-119-34-87:/app/forgerock/myb/mybopenigtc02 # cd bin/
+am@10-119-34-87:/app/forgerock/myb/mybopenigtc02/bin # ls -lrt * .sh
+ls: cannot access '.sh': No such file or directory
+-rw-r--r-- 1 am am   2091 Sep 28  2021 digest.bat
+-rwxr-xr-x 1 am am   3680 Sep 28  2021 setclasspath.sh
+-rw-r--r-- 1 am am  25145 Sep 28  2021 commons-daemon.jar
+-rw-r--r-- 1 am am   3460 Sep 28  2021 setclasspath.bat
+-rw-r--r-- 1 am am  35051 Sep 28  2021 bootstrap.jar
+-rwxr-xr-x 1 am am   1922 Sep 28  2021 configtest.sh
+-rwxr-xr-x 1 am am   5515 Sep 28  2021 tool-wrapper.sh
+-rw-r--r-- 1 am am   1703 Sep 28  2021 catalina-tasks.xml
+-rw-r--r-- 1 am am   2022 Sep 28  2021 startup.bat
+-rwxr-xr-x 1 am am  24218 Sep 28  2021 catalina.sh
+-rw-r--r-- 1 am am   4574 Sep 28  2021 tool-wrapper.bat
+-rwxr-xr-x 1 am am   1902 Sep 28  2021 shutdown.sh
+-rw-r--r-- 1 am am 418183 Sep 28  2021 tomcat-native.tar.gz
+-rwxr-xr-x 1 am am   1904 Sep 28  2021 startup.sh
+-rw-r--r-- 1 am am   2020 Sep 28  2021 shutdown.bat
+-rwxr-xr-x 1 am am   1908 Sep 28  2021 version.sh
+-rwxr-xr-x 1 am am   1965 Sep 28  2021 digest.sh
+-rw-r--r-- 1 am am   2040 Sep 28  2021 configtest.bat
+-rw-r--r-- 1 am am  49336 Sep 28  2021 tomcat-juli.jar
+-rwxr-xr-x 1 am am   8508 Sep 28  2021 daemon.sh
+-rw-r--r-- 1 am am  15900 Sep 28  2021 catalina.bat
+-rw-r--r-- 1 am am   2026 Sep 28  2021 version.bat
+-rw-r--r-- 1 am am 207125 Sep 28  2021 commons-daemon-native.tar.gz
+-rwxrwxr-x 1 am am    867 Apr  6  2023 setenv.sh
+-rwxr-xr-x 1 am am   2973 Apr  6  2023 start_mybopenigtc02.sh
+-rw-r--r-- 1 am am      8 Sep 12 12:21 catalina.pid
+am@10-119-34-87:/app/forgerock/myb/mybopenigtc02/bin # ls -lrt *.sh
+-rwxr-xr-x 1 am am  3680 Sep 28  2021 setclasspath.sh
+-rwxr-xr-x 1 am am  1922 Sep 28  2021 configtest.sh
+-rwxr-xr-x 1 am am  5515 Sep 28  2021 tool-wrapper.sh
+-rwxr-xr-x 1 am am 24218 Sep 28  2021 catalina.sh
+-rwxr-xr-x 1 am am  1902 Sep 28  2021 shutdown.sh
+-rwxr-xr-x 1 am am  1904 Sep 28  2021 startup.sh
+-rwxr-xr-x 1 am am  1908 Sep 28  2021 version.sh
+-rwxr-xr-x 1 am am  1965 Sep 28  2021 digest.sh
+-rwxr-xr-x 1 am am  8508 Sep 28  2021 daemon.sh
+-rwxrwxr-x 1 am am   867 Apr  6  2023 setenv.sh
+-rwxr-xr-x 1 am am  2973 Apr  6  2023 start_mybopenigtc02.sh
+am@10-119-34-87:/app/forgerock/myb/mybopenigtc02/bin # cd /app/openigvpstest/
+am@10-119-34-87:/app/openigvpstest # ls -lrt
+total 576
+drwxr-xr-x   3 am am   4096 Jun 22  2021 work
+drwxr-xr-x   2 am am   4096 Jun 22  2021 deploy_backup
+drwxrwxr-x   2 am am   4096 Jun 22  2021 secrets
+drwxr-xr-x   2 am am   4096 Jun 22  2021 IGSampleApp
+drwxrwxr-x   7 am am   4096 Jun 22  2021 config-07-24
+drwxr-xr-x   3 am am   4096 Jun 22  2021 scripts
+drwxr-xr-x   3 am am   4096 Jun 22  2021 data
+drwxr-xr-x   2 am am   4096 Jun 22  2021 lib
+-rw-r--r--   1 am am  16738 Jun 22  2021 RUNNING.txt
+-rw-r--r--   1 am am   7320 Jun 22  2021 RELEASE-NOTES
+-rw-r--r--   1 am am   3334 Jun 22  2021 README.md
+-rw-r--r--   1 am am   1777 Jun 22  2021 NOTICE
+-rw-r--r--   1 am am  58153 Jun 22  2021 LICENSE
+-rw-r--r--   1 am am   6237 Jun 22  2021 CONTRIBUTING.md
+-rw-r--r--   1 am am  20106 Jun 22  2021 BUILDING.txt
+drwxr-xr-x   4 am am   4096 Aug 26  2022 webapps
+drwxrwxr-x   9 am am   4096 Aug 29  2022 config
+drwxr-xr-x   2 am am   4096 Aug 29  2022 bin
+drwxr-xr-x   3 am am   4096 Oct  7  2022 conf
+drwxr-xr-x 573 am am  45056 Aug 29 11:00 tmp
+drwxr-xr-x   2 am am 307200 Oct  6 10:45 temp
+drwxr-xr-x   3 am am  53248 Oct  7 02:35 logs
+am@10-119-34-87:/app/openigvpstest # cd bin/
+am@10-119-34-87:/app/openigvpstest/bin # ls -lrt*.sh
+ls: invalid option -- '*'
+Try 'ls --help' for more information.
+am@10-119-34-87:/app/openigvpstest/bin # ls -lrt *.sh
+-rwxr-xr-x 1 am am  3680 Jun 22  2021 setclasspath.sh
+-rwxr-xr-x 1 am am  1922 Jun 22  2021 configtest.sh
+-rwxr-xr-x 1 am am  5515 Jun 22  2021 tool-wrapper.sh
+-rwxr-xr-x 1 am am 24218 Jun 22  2021 catalina.sh
+-rwxr-xr-x 1 am am  1902 Jun 22  2021 shutdown.sh
+-rwxr-xr-x 1 am am  1904 Jun 22  2021 startup.sh
+-rwxr-xr-x 1 am am  1908 Jun 22  2021 version.sh
+-rwxr-xr-x 1 am am  1965 Jun 22  2021 digest.sh
+-rwxr-xr-x 1 am am  8508 Jun 22  2021 daemon.sh
+-rwxrwxr-x 1 am am   628 Aug 26  2021 setenv.sh
+-rwxrwxr-x 1 am am   680 Aug 26  2021 vps_remove_openamshared_jar.sh
+-rwxr-xr-x 1 am am  3055 Aug 29  2022 start_mybopenigtc01.sh
+am@10-119-34-87:/app/openigvpstest/bin # start_mybopenigtc02.sh^C
+am@10-119-34-87:/app/openigvpstest/bin # cat startup.sh
+#!/bin/sh
+
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# -----------------------------------------------------------------------------
+# Start Script for the CATALINA Server
+# -----------------------------------------------------------------------------
+
+# Better OS/400 detection: see Bugzilla 31132
+os400=false
+case "`uname`" in
+OS400*) os400=true;;
+esac
+
+# resolve links - $0 may be a softlink
+PRG="$0"
+
+while [ -h "$PRG" ] ; do
+  ls=`ls -ld "$PRG"`
+  link=`expr "$ls" : '.*-> \(.*\)$'`
+  if expr "$link" : '/.*' > /dev/null; then
+    PRG="$link"
+  else
+    PRG=`dirname "$PRG"`/"$link"
+  fi
+done
+
+PRGDIR=`dirname "$PRG"`
+EXECUTABLE=catalina.sh
+
+# Check that target executable exists
+if $os400; then
+  # -x will Only work on the os400 if the files are:
+  # 1. owned by the user
+  # 2. owned by the PRIMARY group of the user
+  # this will not work if the user belongs in secondary groups
+  eval
+else
+  if [ ! -x "$PRGDIR"/"$EXECUTABLE" ]; then
+    echo "Cannot find $PRGDIR/$EXECUTABLE"
+    echo "The file is absent or does not have execute permission"
+    echo "This file is needed to run this program"
+    exit 1
+  fi
+fi
+
+exec "$PRGDIR"/"$EXECUTABLE" start "$@"
+am@10-119-34-87:/app/openigvpstest/bin # ls -lrt *.sh
+-rwxr-xr-x 1 am am  3680 Jun 22  2021 setclasspath.sh
+-rwxr-xr-x 1 am am  1922 Jun 22  2021 configtest.sh
+-rwxr-xr-x 1 am am  5515 Jun 22  2021 tool-wrapper.sh
+-rwxr-xr-x 1 am am 24218 Jun 22  2021 catalina.sh
+-rwxr-xr-x 1 am am  1902 Jun 22  2021 shutdown.sh
+-rwxr-xr-x 1 am am  1904 Jun 22  2021 startup.sh
+-rwxr-xr-x 1 am am  1908 Jun 22  2021 version.sh
+-rwxr-xr-x 1 am am  1965 Jun 22  2021 digest.sh
+-rwxr-xr-x 1 am am  8508 Jun 22  2021 daemon.sh
+-rwxrwxr-x 1 am am   628 Aug 26  2021 setenv.sh
+-rwxrwxr-x 1 am am   680 Aug 26  2021 vps_remove_openamshared_jar.sh
+-rwxr-xr-x 1 am am  3055 Aug 29  2022 start_mybopenigtc01.sh
+am@10-119-34-87:/app/openigvpstest/bin # cat start_mybopenigtc01.sh
+#!/bin/bash
+
+export UMASK="0022"
+#export com.verizon.ig.config=/app/openigvpstest/config/config.properties
+
+Inst_name="mybopenigtc02"
+HOST=`hostname`
+
+CATALINA_OPTS="-d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m"
+CATALINA_BASE=/app/openigvpstest
+CATALINA_HOME=/app/openigvpstest
+
+CATALINA_OPTS="${CATALINA_OPTS} -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name="WLS-GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ" -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=${HOST}-mybopenig01 -Dnewrelic.config.label='AppId:GE3V;Environment:QA2;Application:MYBOPENIG01' -Dcanary.property="false" -Dclient.state="" -Dclient.zip="509106" -Damecpdid="509106""
+
+
+
+JAVA_HOME=/app/jdk/jdk1.8.0_111
+JRE_HOME=/app/jdk/jdk1.8.0_111
+
+CATALINA_PID=/log/openigvpstest/${Inst_name}/${Inst_name}.pid
+
+CATALINA_OUT=/log/openigvpstest/mybopenigtc02/mybopenigtc02.catalina.out
+
+#CATALINA_OPTS="${CATALINA_OPTS} -javaagent:/app/wily10.5/wily/Agent.jar -Dcom.wily.introscope.agentProfile=/app/wily10.5/wily/core/config/IntroscopeAgent.mybiz.tomcat.profile -Dorg.osgi.framework.bootdelegation=com.wily.* -Dcom.wily.introscope.agent.agentName=`/bin/uname -n`-$JVM_NAME"
+
+CATALINA_OPTS="${CATALINA_OPTS} -DSERVER_INSTANCE=${Inst_name}"
+
+#CATALINA_OPTS="${CATALINA_OPTS} -Dlogback.configurationFile=/app/conf/tomcat/log4j/srv01_dao01/logback.xml"
+
+export JAVA_HOME JRE_HOME MEMORY_SETTINGS CATALINA_BASE CATALINA_HOME CATALINA_OPTS JAVA_HOME CATALINA_PID CATALINA_OUT JAVA_OPTS
+
+#-Dopenig.base=/app/openigvpstest/
+
+export IG_INSTANCE_DIR=/app/openigvpstest/
+
+#export JPDA_ADDRESS=4000
+#export JPDA_TRANSPORT=dt_socket
+
+export KEYSTORE_SECRET_ID='YTBsdjNybHowbg=='
+
+#$CATALINA_BASE/bin/catalina.sh jpda start
+
+#--------------------------------------VPS Specific Steps(START)-----------------------------------------
+#Deleting openam-shared jar and restarting tomcat after 30 secs which is needed for VPS setup.
+echo "Deleting openam-shared jar after 30 secs sleep......."
+sleep 30s
+rm -rf $CATALINA_HOME/webapps/ROOT/WEB-INF/lib/openam-shared-6.5.3.jar
+
+PID=`ps -eaf | grep '/app/openigvpstest/' | grep -v grep | awk '{printf $2}'`
+if [[ "" !=  "$PID" ]]; then
+  echo "killing process Id: $PID"
+  kill -9 $PID
+  echo "Successfully stopped openigvpstest instance"
+fi
+echo "Restarting server after 10 secs sleep....."
+sleep 10s
+
+$CATALINA_BASE/bin/catalina.sh jpda start
+echo "Successfully restarted server."
+#--------------------------------------VPS Specific Steps(END)-------------------------------------------
+am@10-119-34-87:/app/openigvpstest/bin # ps -eaf | grep '/app/openigvpstest/
+> ^C
+am@10-119-34-87:/app/openigvpstest/bin # ps -eaf | grep '/app/openigvpstest/'
+am       1404649       1  0 Aug29 ?        05:40:03 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/openigvpstest/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=localhost:8000,server=y,suspend=n -d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djava.io.tmpdir=/app/openigvpstest/temp org.apache.catalina.startup.Bootstrap start
+am       3141810 3140829  0 12:06 pts/3    00:00:00 grep --color=auto /app/openigvpstest/
+am@10-119-34-87:/app/openigvpstest/bin # ^C
+am@10-119-34-87:/app/openigvpstest/bin # ^C
+am@10-119-34-87:/app/openigvpstest/bin # ls -lrt *.sh
+-rwxr-xr-x 1 am am  3680 Jun 22  2021 setclasspath.sh
+-rwxr-xr-x 1 am am  1922 Jun 22  2021 configtest.sh
+-rwxr-xr-x 1 am am  5515 Jun 22  2021 tool-wrapper.sh
+-rwxr-xr-x 1 am am 24218 Jun 22  2021 catalina.sh
+-rwxr-xr-x 1 am am  1902 Jun 22  2021 shutdown.sh
+-rwxr-xr-x 1 am am  1904 Jun 22  2021 startup.sh
+-rwxr-xr-x 1 am am  1908 Jun 22  2021 version.sh
+-rwxr-xr-x 1 am am  1965 Jun 22  2021 digest.sh
+-rwxr-xr-x 1 am am  8508 Jun 22  2021 daemon.sh
+-rwxrwxr-x 1 am am   628 Aug 26  2021 setenv.sh
+-rwxrwxr-x 1 am am   680 Aug 26  2021 vps_remove_openamshared_jar.sh
+-rwxr-xr-x 1 am am  3055 Aug 29  2022 start_mybopenigtc01.sh
+am@10-119-34-87:/app/openigvpstest/bin # cat startup.sh
+#!/bin/sh
+
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# -----------------------------------------------------------------------------
+# Start Script for the CATALINA Server
+# -----------------------------------------------------------------------------
+
+# Better OS/400 detection: see Bugzilla 31132
+os400=false
+case "`uname`" in
+OS400*) os400=true;;
+esac
+
+# resolve links - $0 may be a softlink
+PRG="$0"
+
+while [ -h "$PRG" ] ; do
+  ls=`ls -ld "$PRG"`
+  link=`expr "$ls" : '.*-> \(.*\)$'`
+  if expr "$link" : '/.*' > /dev/null; then
+    PRG="$link"
+  else
+    PRG=`dirname "$PRG"`/"$link"
+  fi
+done
+
+PRGDIR=`dirname "$PRG"`
+EXECUTABLE=catalina.sh
+
+# Check that target executable exists
+if $os400; then
+  # -x will Only work on the os400 if the files are:
+  # 1. owned by the user
+  # 2. owned by the PRIMARY group of the user
+  # this will not work if the user belongs in secondary groups
+  eval
+else
+  if [ ! -x "$PRGDIR"/"$EXECUTABLE" ]; then
+    echo "Cannot find $PRGDIR/$EXECUTABLE"
+    echo "The file is absent or does not have execute permission"
+    echo "This file is needed to run this program"
+    exit 1
+  fi
+fi
+
+exec "$PRGDIR"/"$EXECUTABLE" start "$@"
+am@10-119-34-87:/app/openigvpstest/bin # ^C
+am@10-119-34-87:/app/openigvpstest/bin # cd /app/openig
+am@10-119-34-87:/app/openig # ls -lrt
+total 131832
+-rw-r--r--    1 am am     16738 Apr 16  2019 RUNNING.txt
+-rw-r--r--    1 am am      7320 Apr 16  2019 RELEASE-NOTES
+-rw-r--r--    1 am am      3334 Apr 16  2019 README.md
+-rw-r--r--    1 am am      1777 Apr 16  2019 NOTICE
+-rw-r--r--    1 am am     58153 Apr 16  2019 LICENSE
+drwxr-xr-x    2 am am      4096 Apr 16  2019 lib
+-rw-r--r--    1 am am      6237 Apr 16  2019 CONTRIBUTING.md
+-rw-r--r--    1 am am     20106 Apr 16  2019 BUILDING.txt
+drwxr-xr-x    3 am am      4096 Jul 12  2019 data
+drwxr-xr-x    3 am am      4096 Oct 30  2019 scripts
+drwxrwxr-x    7 am am      4096 Jul 24  2020 config-07-24
+drwxrwxr-x    3 am am      4096 Sep  5  2021 backup-sep-05-logout
+drwxr-xr-x    4 am am      4096 Sep 20  2021 ROOT-09-27-backup
+drwxr-xr-x    4 am am      4096 Sep 30  2021 ROOT-OLD
+drwxr-xr-x    2 am am      4096 Feb  3  2022 IGSampleApp
+-rw-rw-r--    1 am am      1174 Feb 18  2022 secrets.zip
+drwxrwxr-x    2 am am      4096 Mar 23  2022 secrets
+drwxr-xr-x    2 am am      4096 Mar 31  2022 deploy_backup
+drwxr-xr-x    3 am am      4096 Mar 31  2022 work
+-rw-r--r--    1 am am 105074626 Feb 13  2023 webapp
+-rw-rw-r--    1 am am  28835840 Feb 14  2023 openig_configQA2.tar
+drwxrwxr-x    2 am am      4096 Mar 22  2023 heapdumps
+drwxr-xr-x    2 am am      4096 Jul 25 18:41 bin
+drwxrwxr-x   11 am am      4096 Aug 29 14:29 config
+drwxr-xr-x    3 am am      4096 Sep  7 14:38 conf
+drwxr-xr-x    4 am am      4096 Sep 26 15:13 webapps
+drwxr-xr-x 1634 am am    126976 Sep 26 15:16 tmp
+drwxr-xr-x    2 am am    684032 Oct  6 13:49 temp
+drwxr-xr-x    3 am am     61440 Oct  7 11:44 logs
+am@10-119-34-87:/app/openig # cd bin/
+am@10-119-34-87:/app/openig/bin # ls -lrt *.sh
+-rwxr-xr-x 1 am am  1908 Apr 16  2019 version.sh
+-rwxr-xr-x 1 am am  5515 Apr 16  2019 tool-wrapper.sh
+-rwxr-xr-x 1 am am  1904 Apr 16  2019 startup.sh
+-rwxr-xr-x 1 am am  1902 Apr 16  2019 shutdown.sh
+-rwxr-xr-x 1 am am  3680 Apr 16  2019 setclasspath.sh
+-rwxr-xr-x 1 am am  1965 Apr 16  2019 digest.sh
+-rwxr-xr-x 1 am am  8508 Apr 16  2019 daemon.sh
+-rwxr-xr-x 1 am am  1922 Apr 16  2019 configtest.sh
+-rwxr-xr-x 1 am am 24218 Apr 16  2019 catalina.sh
+-rwxrwxr-x 1 am am   672 Apr  6  2023 setenv.sh
+-rwxr-xr-x 1 am am  4803 Jul 25 18:41 start_mybopenigtc01.sh
+am@10-119-34-87:/app/openig/bin # cat start_mybopenigtc01.sh
+#!/bin/bash
+
+export UMASK="0022"
+#export com.verizon.ig.config=/app/openig/config/config.properties
+
+Inst_name="mybopenigtc01"
+HOST=`hostname`
+
+#CATALINA_OPTS="-d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m"
+CATALINA_OPTS="-Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m"
+CATALINA_BASE=/app/openig
+CATALINA_HOME=/app/openig
+
+#CATALINA_OPTS="${CATALINA_OPTS} -verbose:gc -Xloggc:/log/openig/mybopenigtc01/mybopenigtc01.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name="WLS-B6OV-MYBOPENIGTC01-Tomcat-QA2-ESDC-GZ" -Dcom.verizon.ig.config=/app/openig/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc01:8075 -Dnewrelic.config.label='AppId:GE3V;Environment:QA2;Application:MYBOPENIG01' -Dcanary.property="false" -Dclient.state="" -Dclient.zip="509106" -Damecpdid="509106""
+
+
+
+CATALINA_OPTS="${CATALINA_OPTS} -verbose:gc -Xloggc:/log/openig/mybopenigtc01/mybopenigtc01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name="WLS-B6OV-MYBOPENIGTC01-Tomcat-QA2-ESDC-GZ" -Dcom.verizon.ig.config=/app/openig/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc01:8075 -Dnewrelic.config.label='AppId:GE3V;Environment:QA2;Application:MYBOPENIG01' -Dcanary.property="false" -Dclient.state="" -Dclient.zip="509106" -Damecpdid="509106""
+
+JAVA_HOME=/app/jdk/jdk1.8.0_111
+JRE_HOME=/app/jdk/jdk1.8.0_111
+
+#JAVA_HOME=/app/jdk/jdk1.8.0_341
+#JRE_HOME=/app/jdk/jdk1.8.0_341
+
+#JAVA_HOME=/app/jdk/jdk11.0.18
+#JRE_HOME=/app/jdk/jdk11.0.18
+
+CATALINA_PID=/log/openig/${Inst_name}/${Inst_name}.pid
+
+CATALINA_OUT=/log/openig/mybopenigtc01/mybopenigtc01.catalina.out
+
+#CATALINA_OPTS="${CATALINA_OPTS} -javaagent:/app/wily10.5/wily/Agent.jar -Dcom.wily.introscope.agentProfile=/app/wily10.5/wily/core/config/IntroscopeAgent.mybiz.tomcat.profile -Dorg.osgi.framework.bootdelegation=com.wily.* -Dcom.wily.introscope.agent.agentName=`/bin/uname -n`-$JVM_NAME"
+
+CATALINA_OPTS="${CATALINA_OPTS} -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true"
+CATALINA_OPTS="${CATALINA_OPTS} -DSERVER_INSTANCE=${Inst_name}"
+CATALINA_OPTS="${CATALINA_OPTS} -javaagent:/app/prevoty/prevoty-agent.jar"
+CATALINA_OPTS="${CATALINA_OPTS} -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar"
+CATALINA_OPTS="${CATALINA_OPTS} -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json"
+CATALINA_OPTS="${CATALINA_OPTS} -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json"
+CATALINA_OPTS="${CATALINA_OPTS} -Dprevoty.disable_csrf"
+CATALINA_OPTS="${CATALINA_OPTS} -Dprevoty.disable_network"
+CATALINA_OPTS="${CATALINA_OPTS} -Dprevoty.disable_weakcrypto"
+CATALINA_OPTS="${CATALINA_OPTS} -Dlog4j.formatMsgNoLookups=true"
+
+#CATALINA_OPTS="${CATALINA_OPTS} -Dlogback.configurationFile=/app/conf/tomcat/log4j/srv01_dao01/logback.xml"
+
+export JAVA_HOME JRE_HOME MEMORY_SETTINGS CATALINA_BASE CATALINA_HOME CATALINA_OPTS JAVA_HOME CATALINA_PID CATALINA_OUT JAVA_OPTS
+
+#-Dopenig.base=/app/openig/
+
+export IG_INSTANCE_DIR=/app/openig/
+
+export JPDA_ADDRESS=4000
+export JPDA_TRANSPORT=dt_socket
+
+export KEYSTORE_SECRET_ID='YTBsdjNybHowbg=='
+
+
+$CATALINA_BASE/bin/catalina.sh jpda start
+
+#--------------------------------------VPS Specific Steps(START)-----------------------------------------
+Deleting openam-shared jar and restarting tomcat after 30 secs which is needed for VPS setup.
+#echo "Deleting openam-shared jar after 30 secs sleep......."
+#sleep 30s
+#rm -rf $CATALINA_HOME/webapps/ROOT/WEB-INF/lib/openam-shared-6.5.3.jar
+
+PID=`ps -eaf | grep '/app/openig/' | grep -v grep | awk '{printf $2}'`
+if [[ "" !=  "$PID" ]]; then
+  echo "killing process Id: $PID"
+  kill -9 $PID
+  echo "Successfully stopped openig instance"
+fi
+echo "Restarting server after 10 secs sleep....."
+sleep 10s
+
+
+$CATALINA_BASE/bin/catalina.sh jpda start
+echo "Successfully restarted server."
+#--------------------------------------VPS Specific Steps(END)-------------------------------------------
+am@10-119-34-87:/app/openig/bin # ^C
+am@10-119-34-87:/app/openig/bin # kill -9 1387612
+am@10-119-34-87:/app/openig/bin # ps -ef | grep openig
+am       1404649       1  0 Aug29 ?        05:40:06 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/openigvpstest/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=localhost:8000,server=y,suspend=n -d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djava.io.tmpdir=/app/openigvpstest/temp org.apache.catalina.startup.Bootstrap start
+am       3141996 3140829  0 12:14 pts/3    00:00:00 grep --color=auto openig
+am       3354290       1  0 Sep12 ?        00:37:28 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/forgerock/myb/mybopenigtc02/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Dfile.encoding=UTF-8 -Djavax.net.ssl.KeyStore=/app/jdk/jdk1.8.0_111/jre/lib/security/ipr-qa-iginternal/iginternal.jks -Djavax.net.ssl.KeyStorePassword=changeit -Djavax.net.ssl.trustStoreType=JKS -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC02-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc02:8085 -Dnewrelic.config.label=AppId:HZ2V;Environment:QA1;Application:MYBOPENIG02 -DSERVER_INSTANCE=mybopenigtc02 -Dlog4j.formatMsgNoLookups=true -Xms4096m -Xmx4096m -Dignore.endorsed.dirs= -classpath /app/forgerock/myb/mybopenigtc02/bin/bootstrap.jar:/app/forgerock/myb/mybopenigtc02/bin/tomcat-juli.jar -Dcatalina.base=/app/forgerock/myb/mybopenigtc02 -Dcatalina.home=/app/forgerock/myb/mybopenigtc02 -Djava.io.tmpdir=/app/forgerock/myb/mybopenigtc02/temp org.apache.catalina.startup.Bootstrap start
+am@10-119-34-87:/app/openig/bin # ls -lrt
+total 900
+-rwxr-xr-x 1 am am   1908 Apr 16  2019  version.sh
+-rw-r--r-- 1 am am   2026 Apr 16  2019  version.bat
+-rwxr-xr-x 1 am am   5515 Apr 16  2019  tool-wrapper.sh
+-rw-r--r-- 1 am am   4574 Apr 16  2019  tool-wrapper.bat
+-rw-r--r-- 1 am am 418183 Apr 16  2019  tomcat-native.tar.gz
+-rw-r--r-- 1 am am  49336 Apr 16  2019  tomcat-juli.jar
+-rwxr-xr-x 1 am am   1904 Apr 16  2019  startup.sh
+-rw-r--r-- 1 am am   2022 Apr 16  2019  startup.bat
+-rwxr-xr-x 1 am am   1902 Apr 16  2019  shutdown.sh
+-rw-r--r-- 1 am am   2020 Apr 16  2019  shutdown.bat
+-rwxr-xr-x 1 am am   3680 Apr 16  2019  setclasspath.sh
+-rw-r--r-- 1 am am   3460 Apr 16  2019  setclasspath.bat
+-rwxr-xr-x 1 am am   1965 Apr 16  2019  digest.sh
+-rw-r--r-- 1 am am   2091 Apr 16  2019  digest.bat
+-rwxr-xr-x 1 am am   8508 Apr 16  2019  daemon.sh
+-rwxr-xr-x 1 am am   1922 Apr 16  2019  configtest.sh
+-rw-r--r-- 1 am am   2040 Apr 16  2019  configtest.bat
+-rw-r--r-- 1 am am 207125 Apr 16  2019  commons-daemon-native.tar.gz
+-rw-r--r-- 1 am am  25145 Apr 16  2019  commons-daemon.jar
+-rw-r--r-- 1 am am   1703 Apr 16  2019  catalina-tasks.xml
+-rwxr-xr-x 1 am am  24218 Apr 16  2019  catalina.sh
+-rw-r--r-- 1 am am  15900 Apr 16  2019  catalina.bat
+-rw-r--r-- 1 am am  35051 Apr 16  2019  bootstrap.jar
+-rwxr-xr-x 1 am am   2050 Feb 24  2021  start_mybopenigtc01.sh_bkp
+-rw-r--r-- 1 am am  11843 Apr 21  2021 '(RouterHandler.java:403)'
+-rwxr-xr-x 1 am am   2185 Aug 26  2021  start_mybopenigtc01.sh_bkp0826
+-rwxr-xr-x 1 am am   2968 Aug 31  2021  start_mybopenigtc01.sh_vps_BKP
+-rwxr-xr-x 1 am am   3610 Dec 13  2021  start_mybopenigtc01.sh_bckup
+-rw-rw-r-- 1 am am      0 Nov 11  2022  ps
+-rw-r--r-- 1 am am      1 Dec  7  2022  catalina.pid
+-rw-r--r-- 1 am am   2163 Mar 16  2023  home
+-rwxrwxr-x 1 am am    672 Apr  6  2023  setenv.sh
+-rwxr-xr-x 1 am am   4803 Jul 25 18:41  start_mybopenigtc01.sh
+am@10-119-34-87:/app/openig/bin # ./start_mybopenigtc01.sh
+Using CATALINA_BASE:   /app/openig
+Using CATALINA_HOME:   /app/openig
+Using CATALINA_TMPDIR: /app/openig/temp
+Using JRE_HOME:        /app/jdk/jdk11.0.18
+Using CLASSPATH:       /app/openig/bin/bootstrap.jar:/app/openig/bin/tomcat-juli.jar
+Using CATALINA_PID:    /log/openig/mybopenigtc01/mybopenigtc01.pid
+Existing PID file found during start.
+Removing/clearing stale PID file.
+Tomcat started.
+./start_mybopenigtc01.sh: line 63: Deleting: command not found
+killing process Id: 3142126
+Successfully stopped openig instance
+Restarting server after 10 secs sleep.....
+Using CATALINA_BASE:   /app/openig
+Using CATALINA_HOME:   /app/openig
+Using CATALINA_TMPDIR: /app/openig/temp
+Using JRE_HOME:        /app/jdk/jdk11.0.18
+Using CLASSPATH:       /app/openig/bin/bootstrap.jar:/app/openig/bin/tomcat-juli.jar
+Using CATALINA_PID:    /log/openig/mybopenigtc01/mybopenigtc01.pid
+Existing PID file found during start.
+Removing/clearing stale PID file.
+Tomcat started.
+Successfully restarted server.
+am@10-119-34-87:/app/openig/bin # ps -ef | grep openig
+am       1404649       1  0 Aug29 ?        05:40:07 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/openigvpstest/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=localhost:8000,server=y,suspend=n -d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djava.io.tmpdir=/app/openigvpstest/temp org.apache.catalina.startup.Bootstrap start
+am       3142146       1 99 12:17 pts/3    00:00:24 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/openig/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=4000,server=y,suspend=n -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc01/mybopenigtc01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC01-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openig/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc01:8075 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -DSERVER_INSTANCE=mybopenigtc01 -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json -Dprevoty.disable_csrf -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dlog4j.formatMsgNoLookups=true -Dignore.endorsed.dirs= -classpath /app/openig/bin/bootstrap.jar:/app/openig/bin/tomcat-juli.jar -Dcatalina.base=/app/openig -Dcatalina.home=/app/openig -Djava.io.tmpdir=/app/openig/temp org.apache.catalina.startup.Bootstrap start
+am       3142210 3140829  0 12:17 pts/3    00:00:00 grep --color=auto openig
+am       3354290       1  0 Sep12 ?        00:37:28 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/forgerock/myb/mybopenigtc02/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Dfile.encoding=UTF-8 -Djavax.net.ssl.KeyStore=/app/jdk/jdk1.8.0_111/jre/lib/security/ipr-qa-iginternal/iginternal.jks -Djavax.net.ssl.KeyStorePassword=changeit -Djavax.net.ssl.trustStoreType=JKS -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC02-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc02:8085 -Dnewrelic.config.label=AppId:HZ2V;Environment:QA1;Application:MYBOPENIG02 -DSERVER_INSTANCE=mybopenigtc02 -Dlog4j.formatMsgNoLookups=true -Xms4096m -Xmx4096m -Dignore.endorsed.dirs= -classpath /app/forgerock/myb/mybopenigtc02/bin/bootstrap.jar:/app/forgerock/myb/mybopenigtc02/bin/tomcat-juli.jar -Dcatalina.base=/app/forgerock/myb/mybopenigtc02 -Dcatalina.home=/app/forgerock/myb/mybopenigtc02 -Djava.io.tmpdir=/app/forgerock/myb/mybopenigtc02/temp org.apache.catalina.startup.Bootstrap start
+am@10-119-34-87:/app/openig/bin # kill -9 1387612
