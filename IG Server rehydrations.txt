@@ -1,0 +1,65 @@
+Pre rehydration steps :
+
+1st step : lsblk -f 
+
+we need to take the bakup of UUIDs of app log  and swap for passing the UUIDs in the job
+
+2nd step : cat /etc/hosts
+
+ we need to update the host file after rehydration for that we need to take the backup of hosts file
+
+3rd step : cat /etc/fstab
+
+we need to verify the UUIDs for that we need to take backup of fstab
+
+4th  step : hostname - we need to pass the hostname in the job as a parameter
+
+5th step :  we need to take the backup of am folder which is there under home directory
+
+cd /home/
+
+ls -ltra
+
+mv am am_rehydration_date 
+
+cp -r am_rehydration_date /app
+=================================================================================================
+post rehydration steps
+
+1st step:
+
+we need to cross check the above 1st, 2nd, 3rd steps
+
+2nd step: replacing the am folder 
+
+cd /home
+
+need to remove the am folder
+
+rm -rf am  
+
+and then we need to copy the replace the backup am folder from app directory to home folder
+
+cp -r /app/am_rehydration_date .
+
+============================================================================================================
+
+https://jenkins-vcg4.vpc.verizon.com/vcg4/job/VZW.B6OV.STD.FOLDER/job/VZW.B6OV.MYBIZ.NonProd.EC2.CREATION.RHEL_classic 
+
+https://jenkins-vcg4.vpc.verizon.com/vcg4/job/VZW.B6OV.STD.FOLDER/job/VZW.B6OV.MYBIZ.NonProd.EC2.CREATION.RHEL_classicply  - after volumes got attached then only we need to use 
+
+=========================================================================================================================
+
+Rehydration process:
+
+https://drive.google.com/file/d/1xUYxn-ItIBCiZs5M6_JRv8GWn_NlvAYu/view?usp=drive_link
+
+https://drive.google.com/file/d/1-yKMWorq8OxuLKPAsN6PY6ssLtGnBDYR/view?usp=drive_link
+
+
+
+
+
+
+
+

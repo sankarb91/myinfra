@@ -1,0 +1,328 @@
+QA2 -REHYDRATION 10.119.34.87
+=============================
+
+am@10-119-34-87:/ # lsblk -f
+NAME              FSTYPE      LABEL UUID                                   MOUNTPOINT
+nvme1n1           swap              24b65261-80c4-4d5c-9156-f7f0e6693130   [SWAP]
+nvme0n1
+├─nvme0n1p1       xfs               43c1cf33-8402-4c8b-ba86-a78b6cfe3155   /boot
+└─nvme0n1p2       LVM2_member       HpfOJb-lJAJ-4hcl-lidV-NZcb-DiQX-SMhfNd
+  ├─vgroot-lvroot xfs               4dff3379-3fcc-4528-9b8f-080856edfb38   /
+  ├─vgroot-lvswap swap              c8b81067-ae64-4855-9a46-eaaa5b84dedf   [SWAP]
+  ├─vgroot-lvhome xfs               5d74a8dc-af90-4c96-a6e9-5696abaf06f2   /home
+  ├─vgroot-lvapps xfs               2e765938-fb83-446e-a453-6d58bf5d9a9c   /apps
+  ├─vgroot-lvvar  xfs               a1701c74-802d-4452-bd9e-9bc8abd95662   /var
+  └─vgroot-lvtmp  xfs               a4e99454-042b-413f-9869-d8530e7addb7   /tmp
+nvme3n1           ext4              9d0136ad-1eda-459b-a890-1866756ed077   /log
+nvme2n1           ext4              7fb8b2a6-b6fe-483b-a8d3-cfd425d96d36   /app
+am@10-119-34-87:/ # cat /etc/hosts
+127.0.0.1 localhost
+138.83.26.220 vzbuildserver
+am@10-119-34-87:/ # cat /etc/fstab
+
+#
+# /etc/fstab
+# Created by anaconda on Tue May  9 19:20:41 2023
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/vgroot-lvroot /                       xfs     defaults        0 0
+/dev/mapper/vgroot-lvapps /apps                   xfs     defaults        0 0
+UUID=43c1cf33-8402-4c8b-ba86-a78b6cfe3155 /boot                   xfs     defaults        0 0
+/dev/mapper/vgroot-lvhome /home                   xfs     defaults,nodev        0 0
+/dev/mapper/vgroot-lvtmp /tmp                    xfs     defaults,nosuid,nodev        0 0
+/dev/mapper/vgroot-lvvar /var                    xfs     defaults        0 0
+/dev/mapper/vgroot-lvswap none                    swap    defaults        0 0
+tmpfs /dev/shm tmpfs defaults,nodev,nosuid,noexec 0 0
+UUID=7fb8b2a6-b6fe-483b-a8d3-cfd425d96d36  /app  ext4  defaults  0  0
+UUID=9d0136ad-1eda-459b-a890-1866756ed077  /log  ext4  defaults  0  0
+UUID=24b65261-80c4-4d5c-9156-f7f0e6693130 none swap sw 0 0
+am@10-119-34-87:/ # hostname
+10-119-34-87.ebiz.verizon.com
+am@10-119-34-87:/ # ps -ef | grep openam
+am       2833281       1  0 Oct05 ?        00:16:03 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/openam/forgerock/mybconsole/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Xmx3072m -Xms3072m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openam/mybopenam01/mybopenam01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -DSERVER_INSTANCE=mybconsole -javaagent:/app/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBCONSOLE-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybconsole:8009 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -Dignore.endorsed.dirs= -classpath /app/openam/forgerock/mybconsole/bin/bootstrap.jar:/app/openam/forgerock/mybconsole/bin/tomcat-juli.jar -Dcatalina.base=/app/openam/forgerock/mybconsole -Dcatalina.home=/app/openam/forgerock/mybconsole -Djava.io.tmpdir=/app/openam/forgerock/mybconsole/temp org.apache.catalina.startup.Bootstrap start
+am       2833802       1  0 Oct05 ?        00:35:31 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/openam/forgerock/mybopenam01/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=8555,server=y,suspend=n -Xmx3072m -Xms3072m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openam/mybopenam01/mybopenam01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENAM-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenam01:8480 -DSERVER_INSTANCE=mybopenam01 -Dservername=10-119-34-87.ebiz.verizon.com -DSECURE_BOOTSTRAP_SERVERS=10.119.37.252:9092,10.119.37.252:9093,10.119.37.252:9094 -DKAFKA_CREDENTIALS_FILE_PATH=/app/openam/forgerock/mybopenam01/conf/secure_kafka.properties -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json -Dprevoty.disable_csrf -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dlog4j.formatMsgNoLookups=true -Dlogback.configurationFile=/app/openam/custom/properties/logback.xml -Dignore.endorsed.dirs= -classpath /app/openam/forgerock/mybopenam01/bin/bootstrap.jar:/app/openam/forgerock/mybopenam01/bin/tomcat-juli.jar -Dcatalina.base=/app/openam/forgerock/mybopenam01 -Dcatalina.home=/app/openam/forgerock/mybopenam01 -Djava.io.tmpdir=/app/openam/forgerock/mybopenam01/temp org.apache.catalina.startup.Bootstrap start
+am       3101167       1  0 Oct06 ?        00:08:26 /app/jdk/jdk1.8.0_351/bin/java -Djava.util.logging.config.file=/app/openam/forgerock/epb_soa01/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -d64 -Xmx3072m -Xms3072m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openam/epb_soa01/epb_soa01_gc.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=90 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.license_key=15a5e4b89f79ab30d40c30fc76211564FFFFNRAL -Dnewrelic.config.app_name=HZ2V-B2B_AMSERVICES-SERVICE-GREEN-QA-AWSW -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-b2b_amservices -DB2B_LOGS_PATH=/log/openam/epb_soa01 -DB2B_LOGS_PATH=/log/openam/epb_soa01 -DB2b_port=8251 -DB2B_CONNECTION_TIMEOUT_SEC=20000 -DB2B_REDIRECT_PORT=8443 -DB2B_MAX_THREADS=5000 -DB2B_ACCEPT_COUNT=3000 -DB2b_env=QA2 -DB2B_DC=QA2 -DB2B_ROOT_LOG_LEVEL=error -DB2B_KAFKA_SERVERS=10-119-37-252.ebiz.verizon.com:9092,10-119-37-252.ebiz.verizon.com:9093,10-119-37-252.ebiz.verizon.com:9094 -DB2B_KAFKA_SASL=PLAIN -DB2B_KAFKA_JAAS=org.apache.kafka.common.security.plain.PlainLoginModule -DB2B_KAFKA_SECURITY=SASL_PLAINTEXT -DB2B_KAFKA_USER=admin -DB2B_KAFKA_PASS=admin -DB2B_KAFKA_TOPIC=b2b_amservices_events -DB2B_KAFKA_SERVERS_ELK=b-1.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-2.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-3.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-4.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096 -DB2B_KAFKA_SASL_ELK=SCRAM-SHA-512 -DB2B_KAFKA_JAAS_ELK=org.apache.kafka.common.security.scram.ScramLoginModule -DB2B_KAFKA_SECURITY_ELK=SASL_SSL -DB2B_KAFKA_USER_ELK=iaasadmin -DB2B_KAFKA_PASS_ELK=tim323@T -DB2B_KAFKA_TOPIC_ELK=vbg_onevz_sso_app_logs -DB2B_KAFKA_SERVERS_AUDIT=10-119-37-252.ebiz.verizon.com:9092,10-119-37-252.ebiz.verizon.com:9093,10-119-37-252.ebiz.verizon.com:9094 -DB2B_KAFKA_SASL_AUDIT=PLAIN -DB2B_KAFKA_JAAS_AUDIT=org.apache.kafka.common.security.plain.PlainLoginModule -DB2B_KAFKA_SECURITY_AUDIT= -DB2B_KAFKA_USER_AUDIT=admin -DB2B_KAFKA_PASS_AUDIT=admin -DB2B_KAFKA_TOPIC_AUDIT=b2b_audit_events -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty_raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty_agentrasp -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dprevoty.disable_content -Dprevoty.disable_csrf -Dignore.endorsed.dirs= -classpath /app/openam/forgerock/epb_soa01/bin/bootstrap.jar:/app/openam/forgerock/epb_soa01/bin/tomcat-juli.jar -Dcatalina.base=/app/openam/forgerock/epb_soa01 -Dcatalina.home=/app/openam/forgerock/epb_soa01 -Djava.io.tmpdir=/app/openam/forgerock/epb_soa01/temp org.apache.catalina.startup.Bootstrap start
+am       3402914 3402863  0 22:34 pts/1    00:00:00 grep --color=auto openam
+am@10-119-34-87:/ # ps -ef | grep openig
+am       1404649       1  0 Aug29 ?        05:52:59 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/openigvpstest/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=localhost:8000,server=y,suspend=n -d64 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openigvpstest/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-GE3V-MYBOPENIG-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openigvpstest/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-mybopenig01 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -DSERVER_INSTANCE=mybopenigtc02 -Dignore.endorsed.dirs= -classpath /app/openigvpstest/bin/bootstrap.jar:/app/openigvpstest/bin/tomcat-juli.jar -Dcatalina.base=/app/openigvpstest -Dcatalina.home=/app/openigvpstest -Djava.io.tmpdir=/app/openigvpstest/temp org.apache.catalina.startup.Bootstrap start
+am       3142146       1 99 Oct07 ?        2-20:47:07 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/openig/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -agentlib:jdwp=transport=dt_socket,address=4000,server=y,suspend=n -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc01/mybopenigtc01.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC01-Tomcat-QA2-ESDC-GZ -Dcom.verizon.ig.config=/app/openig/config/config.properties -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc01:8075 -Dnewrelic.config.label=AppId:GE3V;Environment:QA2;Application:MYBOPENIG01 -Dcanary.property=false -Dclient.state= -Dclient.zip=509106 -Damecpdid=509106 -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true -DSERVER_INSTANCE=mybopenigtc01 -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty.raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty.config=/app/prevoty/26580_VBGIAM_RASPModConf.json -Dprevoty.log.config=/app/prevoty/26580_VBGIAM_RASPLogConf.json -Dprevoty.disable_csrf -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dlog4j.formatMsgNoLookups=true -Dignore.endorsed.dirs= -classpath /app/openig/bin/bootstrap.jar:/app/openig/bin/tomcat-juli.jar -Dcatalina.base=/app/openig -Dcatalina.home=/app/openig -Djava.io.tmpdir=/app/openig/temp org.apache.catalina.startup.Bootstrap start
+am       3354290       1  0 Sep12 ?        00:39:35 /app/jdk/jdk11.0.18/bin/java -Djava.util.logging.config.file=/app/forgerock/myb/mybopenigtc02/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -server -Xmx4096m -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -Dsun.net.client.defaultReadTimeout=60000 -Dsun.net.client.defaultConnectTimeout=60000 -Dcom.sun.management.jmxremote -Dfile.encoding=UTF-8 -Djavax.net.ssl.KeyStore=/app/jdk/jdk1.8.0_111/jre/lib/security/ipr-qa-iginternal/iginternal.jks -Djavax.net.ssl.KeyStorePassword=changeit -Djavax.net.ssl.trustStoreType=JKS -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -Xmx2048m -Xms2048m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openig/mybopenigtc02/mybopenigtc02.log -XX:+PrintGCDetails -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=85 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.config.app_name=WLS-B6OV-MYBOPENIGTC02-Tomcat-QA2-ESDC-GZ -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com:Mybiz:mybopenigtc02:8085 -Dnewrelic.config.label=AppId:HZ2V;Environment:QA1;Application:MYBOPENIG02 -DSERVER_INSTANCE=mybopenigtc02 -Dlog4j.formatMsgNoLookups=true -Xms4096m -Xmx4096m -Dignore.endorsed.dirs= -classpath /app/forgerock/myb/mybopenigtc02/bin/bootstrap.jar:/app/forgerock/myb/mybopenigtc02/bin/tomcat-juli.jar -Dcatalina.base=/app/forgerock/myb/mybopenigtc02 -Dcatalina.home=/app/forgerock/myb/mybopenigtc02 -Djava.io.tmpdir=/app/forgerock/myb/mybopenigtc02/temp org.apache.catalina.startup.Bootstrap start
+am       3402921 3402863  0 22:34 pts/1    00:00:00 grep --color=auto openig
+am@10-119-34-87:/ # ps -ef | grep soa
+am       3101167       1  0 Oct06 ?        00:08:26 /app/jdk/jdk1.8.0_351/bin/java -Djava.util.logging.config.file=/app/openam/forgerock/epb_soa01/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0022 -d64 -Xmx3072m -Xms3072m -XX:MaxMetaspaceSize=512m -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:MetaspaceSize=512m -verbose:gc -Xloggc:/log/openam/epb_soa01/epb_soa01_gc.log -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintHeapAtGC -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:SurvivorRatio=6 -XX:CMSInitiatingOccupancyFraction=90 -XX:+UseCMSInitiatingOccupancyOnly -XX:+CMSParallelRemarkEnabled -XX:+DisableExplicitGC -XX:+HeapDumpOnOutOfMemoryError -javaagent:/app/infra/newrelic/newrelic.jar -Dnewrelic.license_key=15a5e4b89f79ab30d40c30fc76211564FFFFNRAL -Dnewrelic.config.app_name=HZ2V-B2B_AMSERVICES-SERVICE-GREEN-QA-AWSW -Dnewrelic.config.proxy_host=proxy.ebiz.verizon.com -Dnewrelic.config.proxy_port=80 -Dnewrelic.config.process_host.display_name=10-119-34-87.ebiz.verizon.com-b2b_amservices -DB2B_LOGS_PATH=/log/openam/epb_soa01 -DB2B_LOGS_PATH=/log/openam/epb_soa01 -DB2b_port=8251 -DB2B_CONNECTION_TIMEOUT_SEC=20000 -DB2B_REDIRECT_PORT=8443 -DB2B_MAX_THREADS=5000 -DB2B_ACCEPT_COUNT=3000 -DB2b_env=QA2 -DB2B_DC=QA2 -DB2B_ROOT_LOG_LEVEL=error -DB2B_KAFKA_SERVERS=10-119-37-252.ebiz.verizon.com:9092,10-119-37-252.ebiz.verizon.com:9093,10-119-37-252.ebiz.verizon.com:9094 -DB2B_KAFKA_SASL=PLAIN -DB2B_KAFKA_JAAS=org.apache.kafka.common.security.plain.PlainLoginModule -DB2B_KAFKA_SECURITY=SASL_PLAINTEXT -DB2B_KAFKA_USER=admin -DB2B_KAFKA_PASS=admin -DB2B_KAFKA_TOPIC=b2b_amservices_events -DB2B_KAFKA_SERVERS_ELK=b-1.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-2.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-3.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096,b-4.bvhv-ifg-nonprod-kafka.x07zr4.c4.kafka.us-east-1.amazonaws.com:9096 -DB2B_KAFKA_SASL_ELK=SCRAM-SHA-512 -DB2B_KAFKA_JAAS_ELK=org.apache.kafka.common.security.scram.ScramLoginModule -DB2B_KAFKA_SECURITY_ELK=SASL_SSL -DB2B_KAFKA_USER_ELK=iaasadmin -DB2B_KAFKA_PASS_ELK=tim323@T -DB2B_KAFKA_TOPIC_ELK=vbg_onevz_sso_app_logs -DB2B_KAFKA_SERVERS_AUDIT=10-119-37-252.ebiz.verizon.com:9092,10-119-37-252.ebiz.verizon.com:9093,10-119-37-252.ebiz.verizon.com:9094 -DB2B_KAFKA_SASL_AUDIT=PLAIN -DB2B_KAFKA_JAAS_AUDIT=org.apache.kafka.common.security.plain.PlainLoginModule -DB2B_KAFKA_SECURITY_AUDIT= -DB2B_KAFKA_USER_AUDIT=admin -DB2B_KAFKA_PASS_AUDIT=admin -DB2B_KAFKA_TOPIC_AUDIT=b2b_audit_events -javaagent:/app/prevoty/prevoty-agent.jar -Dprevoty_raspjarpath=/app/prevoty/prevoty-rasp.jar -Dprevoty_agentrasp -Dprevoty.disable_network -Dprevoty.disable_weakcrypto -Dprevoty.disable_content -Dprevoty.disable_csrf -Dignore.endorsed.dirs= -classpath /app/openam/forgerock/epb_soa01/bin/bootstrap.jar:/app/openam/forgerock/epb_soa01/bin/tomcat-juli.jar -Dcatalina.base=/app/openam/forgerock/epb_soa01 -Dcatalina.home=/app/openam/forgerock/epb_soa01 -Djava.io.tmpdir=/app/openam/forgerock/epb_soa01/temp org.apache.catalina.startup.Bootstrap start
+am       3402925 3402863  0 22:34 pts/1    00:00:00 grep --color=auto soa
+am@10-119-34-87:/ # ps -ef | grep tomcat-services
+am       1432849       1  0 Aug30 ?        00:25:09 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/ui/tomcat-services/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Dignore.endorsed.dirs= -classpath /app/ui/tomcat-services/bin/bootstrap.jar:/app/ui/tomcat-services/bin/tomcat-juli.jar -Dcatalina.base=/app/ui/tomcat-services -Dcatalina.home=/app/ui/tomcat-services -Djava.io.tmpdir=/app/ui/tomcat-services/temp org.apache.catalina.startup.Bootstrap start
+am       3402958 3402863  0 22:35 pts/1    00:00:00 grep --color=auto tomcat-services
+am@10-119-34-87:/ # ps -ef | grep tomcat-login
+am       1404111       1  0 Aug29 ?        01:05:01 /app/jdk/jdk1.8.0_111/bin/java -Djava.util.logging.config.file=/app/ui/tomcat-login/conf/logging.properties -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Djdk.tls.ephemeralDHKeySize=2048 -Djava.protocol.handler.pkgs=org.apache.catalina.webresources -Dorg.apache.catalina.security.SecurityListener.UMASK=0027 -Dignore.endorsed.dirs= -classpath /app/ui/tomcat-login/bin/bootstrap.jar:/app/ui/tomcat-login/bin/tomcat-juli.jar -Dcatalina.base=/app/ui/tomcat-login -Dcatalina.home=/app/ui/tomcat-login -Djava.io.tmpdir=/app/ui/tomcat-login/temp org.apache.catalina.startup.Bootstrap start
+am       3402968 3402863  0 22:35 pts/1    00:00:00 grep --color=auto tomcat-login
+am@10-119-34-87:/ # df -h
+Filesystem                 Size  Used Avail Use% Mounted on
+devtmpfs                   7.5G     0  7.5G   0% /dev
+tmpfs                      7.6G   84K  7.6G   1% /dev/shm
+tmpfs                      7.6G  769M  6.9G  10% /run
+tmpfs                      7.6G     0  7.6G   0% /sys/fs/cgroup
+/dev/mapper/vgroot-lvroot  5.0G  3.7G  1.4G  74% /
+/dev/mapper/vgroot-lvvar   4.5G  931M  3.6G  21% /var
+/dev/nvme3n1                59G   47G  9.5G  84% /log
+/dev/nvme2n1                89G   56G   29G  66% /app
+/dev/mapper/vgroot-lvtmp   2.0G  752M  1.3G  37% /tmp
+/dev/mapper/vgroot-lvhome  507M   86M  422M  17% /home
+/dev/mapper/vgroot-lvapps  5.0G  1.5G  3.5G  30% /apps
+/dev/nvme0n1p1            1014M  421M  594M  42% /boot
+tmpfs                      1.6G     0  1.6G   0% /run/user/810
+tmpfs                      1.6G     0  1.6G   0% /run/user/8885274
+tmpfs                      1.6G     0  1.6G   0% /run/user/7514301
+tmpfs                      1.6G     0  1.6G   0% /run/user/7284482
+tmpfs                      1.6G     0  1.6G   0% /run/user/2687526
+tmpfs                      1.6G     0  1.6G   0% /run/user/7547665
+tmpfs                      1.6G     0  1.6G   0% /run/user/7627899
+tmpfs                      1.6G     0  1.6G   0% /run/user/7618294
+tmpfs                      1.6G     0  1.6G   0% /run/user/7479201
+tmpfs                      1.6G     0  1.6G   0% /run/user/7584367
+am@10-119-34-87:/ # cd /home/
+am@10-119-34-87:/home # ls -lrt
+total 0
+drwx------ 3 svc-aws_cicd_np vzwusers  92 Jun 23 13:59 svc-aws_cicd_np
+drwx------ 2 svc-eiam        vzwusers  76 Jul 20 08:28 svc-eiam
+drwx------ 2 alamd5d         vzwusers 113 Jul 21 07:34 alamd5d
+drwx------ 3 mosesgo         vzwusers 112 Jul 21 08:39 mosesgo
+drwx------ 2 jaweera         vzwusers  97 Jul 21 10:26 jaweera
+drwx------ 2 madaba3         vzwusers  97 Jul 21 13:26 madaba3
+drwx------ 2 venvi42         vzwusers  97 Jul 21 14:30 venvi42
+drwx------ 2 acheama         vzwusers  97 Jul 21 14:31 acheama
+drwx------ 2 kumvi23         vzwusers  97 Jul 22 06:20 kumvi23
+drwx------ 2 mehrosu         vzwusers 113 Jul 25 17:35 mehrosu
+drwx------ 2 naidune         vzwusers 113 Jul 26 00:15 naidune
+drwx------ 2 solasu2         vzwusers  97 Jul 27 11:16 solasu2
+drwx------ 2 spr8sfr         vzwusers  97 Jul 28 11:47 spr8sfr
+drwx------ 2 z620002         vzwusers  97 Jul 31 11:43 z620002
+drwx------ 2 madhma2         vzwusers  97 Aug  3 05:40 madhma2
+drwx------ 2 nayakdu         vzwusers  97 Aug  3 06:56 nayakdu
+drwx------ 2 v779612         vzwusers 113 Aug  7 02:50 v779612
+drwx------ 2 rajede2         vzwusers  97 Aug  8 23:35 rajede2
+drwx------ 2 kumdi9n         vzwusers  97 Aug  9 06:50 kumdi9n
+drwx------ 2 kandipr         vzwusers 113 Aug 11 16:03 kandipr
+drwxrwxrwx 2 kumalo3         vzwusers 116 Aug 14 04:18 kumalo3
+drwxrwxrwx 2 sekath5         vzwusers 116 Aug 16 09:36 sekath5
+drwx------ 2 sivargo         vzwusers  76 Aug 17 05:25 sivargo
+drwxrwxrwx 2 kanagja         vzwusers 116 Aug 18 20:36 kanagja
+drwx------ 2 naraha6         vzwusers  97 Aug 18 21:05 naraha6
+drwx------ 2 qadersy         vzwusers  76 Aug 21 13:31 qadersy
+drwxrwxrwx 2 ryami7u         vzwusers 116 Aug 21 15:33 ryami7u
+drwx------ 2 laksra2         vzwusers  97 Aug 22 02:45 laksra2
+drwx------ 2 lpa6vgq         vzwusers  97 Aug 22 03:14 lpa6vgq
+drwx------ 2 monad8j         vzwusers  97 Aug 22 16:11 monad8j
+drwx------ 2 moharra         vzwusers 113 Aug 23 10:10 moharra
+drwx------ 2 buharmo         vzwusers  76 Aug 24 04:44 buharmo
+drwx------ 3 rachana         vzwusers 128 Aug 24 07:05 rachana
+drwx------ 3 biswsi6         vzwusers 125 Aug 24 12:18 biswsi6
+drwx------ 2 maryje          vzwusers  97 Aug 28 17:08 maryje
+drwx------ 2 sriragu         vzwusers  97 Aug 29 11:04 sriragu
+drwx------ 2 shinan1         vzwusers  97 Aug 30 15:09 shinan1
+drwx------ 3 kushra9         vzwusers 109 Sep  8 09:18 kushra9
+drwx------ 3 sankna7         vzwusers 109 Sep  9 05:28 sankna7
+drwxr-xr-x 3 cottrjo         vzwusers 192 Sep 13 13:44 cottrjo
+drwx------ 2 kallva7         vzwusers 114 Sep 19 02:46 kallva7
+drwx------ 2 v566589         vzwusers 113 Sep 19 12:45 v566589
+drwx------ 2 pathma5         vzwusers  97 Sep 20 08:08 pathma5
+drwx------ 4 khash7c         vzwusers 124 Sep 20 10:00 khash7c
+drwx------ 3 ravirva         vzwusers 128 Sep 21 09:37 ravirva
+drwx------ 2 mancva6         vzwusers 113 Sep 21 16:06 mancva6
+drwxrwxrwx 2 sinan8f         vzwusers 116 Sep 22 03:52 sinan8f
+drwxrwxrwx 4 kasinka         vzwusers 158 Sep 22 04:44 kasinka
+drwx------ 2 tiwsu1c         vzwusers  76 Sep 22 04:59 tiwsu1c
+drwxrwxrwx 2 rakesna         vzwusers 116 Oct  3 23:54 rakesna
+drwxrwxrwx 2 ganappa         vzwusers 128 Oct  4 18:33 ganappa
+drwx------ 2 ekpanjo         vzwusers  95 Oct  6 17:27 ekpanjo
+drwx------ 3 am              am        91 Oct  6 21:30 am_100823
+drwx------ 4 kulkahr         vzwusers 156 Oct  7 14:43 kulkahr
+drwx------ 4 am              am       104 Oct  8 05:49 am
+am@10-119-34-87:/home # mv am am_100923
+mv: cannot move 'am' to 'am_100923': Permission denied
+am@10-119-34-87:/home # exit
+exit
+root@10-119-34-87:/root # mv am am_100923
+mv: cannot stat 'am': No such file or directory
+root@10-119-34-87:/root # cd /home
+root@10-119-34-87:/home # pwd
+/home
+root@10-119-34-87:/home # mv am am_100923
+root@10-119-34-87:/home # ls -lrt
+total 0
+drwx------ 3 svc-aws_cicd_np vzwusers  92 Jun 23 13:59 svc-aws_cicd_np
+drwx------ 2 svc-eiam        vzwusers  76 Jul 20 08:28 svc-eiam
+drwx------ 2 alamd5d         vzwusers 113 Jul 21 07:34 alamd5d
+drwx------ 3 mosesgo         vzwusers 112 Jul 21 08:39 mosesgo
+drwx------ 2 jaweera         vzwusers  97 Jul 21 10:26 jaweera
+drwx------ 2 madaba3         vzwusers  97 Jul 21 13:26 madaba3
+drwx------ 2 venvi42         vzwusers  97 Jul 21 14:30 venvi42
+drwx------ 2 acheama         vzwusers  97 Jul 21 14:31 acheama
+drwx------ 2 kumvi23         vzwusers  97 Jul 22 06:20 kumvi23
+drwx------ 2 mehrosu         vzwusers 113 Jul 25 17:35 mehrosu
+drwx------ 2 naidune         vzwusers 113 Jul 26 00:15 naidune
+drwx------ 2 solasu2         vzwusers  97 Jul 27 11:16 solasu2
+drwx------ 2 spr8sfr         vzwusers  97 Jul 28 11:47 spr8sfr
+drwx------ 2 z620002         vzwusers  97 Jul 31 11:43 z620002
+drwx------ 2 madhma2         vzwusers  97 Aug  3 05:40 madhma2
+drwx------ 2 nayakdu         vzwusers  97 Aug  3 06:56 nayakdu
+drwx------ 2 v779612         vzwusers 113 Aug  7 02:50 v779612
+drwx------ 2 rajede2         vzwusers  97 Aug  8 23:35 rajede2
+drwx------ 2 kumdi9n         vzwusers  97 Aug  9 06:50 kumdi9n
+drwx------ 2 kandipr         vzwusers 113 Aug 11 16:03 kandipr
+drwxrwxrwx 2 kumalo3         vzwusers 116 Aug 14 04:18 kumalo3
+drwxrwxrwx 2 sekath5         vzwusers 116 Aug 16 09:36 sekath5
+drwx------ 2 sivargo         vzwusers  76 Aug 17 05:25 sivargo
+drwxrwxrwx 2 kanagja         vzwusers 116 Aug 18 20:36 kanagja
+drwx------ 2 naraha6         vzwusers  97 Aug 18 21:05 naraha6
+drwx------ 2 qadersy         vzwusers  76 Aug 21 13:31 qadersy
+drwxrwxrwx 2 ryami7u         vzwusers 116 Aug 21 15:33 ryami7u
+drwx------ 2 laksra2         vzwusers  97 Aug 22 02:45 laksra2
+drwx------ 2 lpa6vgq         vzwusers  97 Aug 22 03:14 lpa6vgq
+drwx------ 2 monad8j         vzwusers  97 Aug 22 16:11 monad8j
+drwx------ 2 moharra         vzwusers 113 Aug 23 10:10 moharra
+drwx------ 2 buharmo         vzwusers  76 Aug 24 04:44 buharmo
+drwx------ 3 rachana         vzwusers 128 Aug 24 07:05 rachana
+drwx------ 3 biswsi6         vzwusers 125 Aug 24 12:18 biswsi6
+drwx------ 2 maryje          vzwusers  97 Aug 28 17:08 maryje
+drwx------ 2 sriragu         vzwusers  97 Aug 29 11:04 sriragu
+drwx------ 2 shinan1         vzwusers  97 Aug 30 15:09 shinan1
+drwx------ 3 kushra9         vzwusers 109 Sep  8 09:18 kushra9
+drwx------ 3 sankna7         vzwusers 109 Sep  9 05:28 sankna7
+drwxr-xr-x 3 cottrjo         vzwusers 192 Sep 13 13:44 cottrjo
+drwx------ 2 kallva7         vzwusers 114 Sep 19 02:46 kallva7
+drwx------ 2 v566589         vzwusers 113 Sep 19 12:45 v566589
+drwx------ 2 pathma5         vzwusers  97 Sep 20 08:08 pathma5
+drwx------ 4 khash7c         vzwusers 124 Sep 20 10:00 khash7c
+drwx------ 3 ravirva         vzwusers 128 Sep 21 09:37 ravirva
+drwx------ 2 mancva6         vzwusers 113 Sep 21 16:06 mancva6
+drwxrwxrwx 2 sinan8f         vzwusers 116 Sep 22 03:52 sinan8f
+drwxrwxrwx 4 kasinka         vzwusers 158 Sep 22 04:44 kasinka
+drwx------ 2 tiwsu1c         vzwusers  76 Sep 22 04:59 tiwsu1c
+drwxrwxrwx 2 rakesna         vzwusers 116 Oct  3 23:54 rakesna
+drwxrwxrwx 2 ganappa         vzwusers 128 Oct  4 18:33 ganappa
+drwx------ 2 ekpanjo         vzwusers  95 Oct  6 17:27 ekpanjo
+drwx------ 3 am              am        91 Oct  6 21:30 am_100823
+drwx------ 4 kulkahr         vzwusers 156 Oct  7 14:43 kulkahr
+drwx------ 4 am              am       104 Oct  8 05:49 am_100923
+root@10-119-34-87:/home # cp -r am_100923 /app
+root@10-119-34-87:/home # cd /app
+root@10-119-34-87:/app # ls -lrt
+total 1088
+drwxr-xr-x  4 am   am     4096 Jan 11  2013 mqm
+drwxr-xr-x  7 am   am     4096 Jan 16  2013 coherence
+drwxrwxr-x  3 am   am     4096 Aug 10  2018 opensso
+drwxrwxr-x  3 am   am     4096 Aug 10  2018 vzw_applications
+drwx------  2 am   am     4096 Sep 28  2018 lost+found
+drwxr-xr-x  2 am   am     4096 Sep 28  2018 middleware
+drwxr-xr-x  6 am   am     4096 Sep 28  2018 awscli
+drwxr-xr-x  3 am   am     4096 Jun 21  2019 trial
+drwx------ 19 am   am     4096 Apr  8  2020 am_0408
+drwx------ 19 am   am     4096 Apr 11  2020 am
+drwxrwxrwx  4 am   am     4096 Jun 29  2020 vbgig
+drwxrwxr-x  3 am   am     4096 Aug 30  2020 opensso_083020
+-rw-rw-r--  1 am   am     1068 Sep 11  2020 df_h_091120
+-rw-rw-r--  1 am   am     1178 Sep 11  2020 lsblk_f091120
+-rw-rw-r--  1 am   am   472990 Sep 11  2020 top_091120
+drwxr-x---  6 am   am     4096 Jan 18  2021 coherence_12214
+drwxr-xr-x  6 am   am     4096 Apr 19  2021 vbg-qa
+drwxrwxr-x  2 am   am     4096 May  5  2021 ig_sample_app
+drwxr-xr-x 17 am   am     4096 Jun 22  2021 openigvpstest
+drwxrwxr-x  6 am   am     4096 Aug 18  2021 saml_cert
+drwxrwxr-x  3 am   am     4096 Sep  1  2021 imp
+-rwxrwxrwx  1 am   am    71680 Sep  7  2021 saml_cert.tar
+drwxr-xr-x  3 am   am     4096 Jan 27  2022 insitu
+drwx------ 16 am   am     4096 Feb  3  2022 am_bkp_020322
+drwx------ 16 am   am     4096 Apr 12  2022 am_bkp_041222
+drwxrwxr-x  4 am   am     4096 Jul 13  2022 backup
+drwx------ 16 am   am     4096 Jul 17  2022 am_bkp_071722
+drwx------ 16 am   am     4096 Aug  3  2022 am_bkp_080322
+drwx------ 16 am   am     4096 Sep 26  2022 am_bkp_092622
+-rw-rw-r--  1 am   am       50 Oct  7  2022 etc_hosts_bkp_100722
+drwx------ 16 am   am     4096 Oct  7  2022 am_bkp_100722
+-rw-rw-r--  1 am   am        0 Oct  7  2022 crontab_100722
+-rw-rw-r--  1 am   am      472 Oct  7  2022 pids_bkp_100722
+-rw-rw-r--  1 am   am    41581 Oct  7  2022 ps_ef_100722
+-rw-rw-r--  1 am   am    24428 Oct  7  2022 ps_ef_java_100722
+-rw-rw-r--  1 am   am      905 Oct  7  2022 ps_ef_http_100722
+drwxr-xr-x  3 am   am     4096 Oct  7  2022 newrelic
+-rw-rw-r--  1 am   am       50 Oct 16  2022 etc_hosts_bkp_101622
+drwx------ 16 am   am     4096 Oct 16  2022 am_bkp_101622
+-rw-rw-r--  1 am   am        0 Oct 16  2022 crontab_101622
+-rw-rw-r--  1 am   am      472 Oct 16  2022 pids_bkp_101622
+-rw-rw-r--  1 am   am    37696 Oct 16  2022 ps_ef_101622
+-rw-rw-r--  1 am   am    20554 Oct 16  2022 ps_ef_java_101622
+-rw-rw-r--  1 am   am      846 Oct 16  2022 ps_ef_http_101622
+drwxr-xr-x  3 am   am     4096 Oct 18  2022 backup_loginissue
+-rw-rw-r--  1 am   am       50 Nov 25  2022 etc_hosts_bkp_112522
+drwx------ 16 am   am     4096 Nov 25  2022 am_bkp_112522
+-rw-rw-r--  1 am   am        0 Nov 25  2022 crontab_112522
+-rw-rw-r--  1 am   am      408 Nov 25  2022 pids_bkp_112522
+-rw-rw-r--  1 am   am    19641 Nov 25  2022 ps_ef_112522
+-rw-rw-r--  1 am   am     2962 Nov 25  2022 ps_ef_java_112522
+-rw-rw-r--  1 am   am       59 Nov 25  2022 ps_ef_http_112522
+drwxr-xr-x 11 am   am     4096 Dec  2  2022 ws7
+-rw-rw-r--  1 am   am       50 Jan  1  2023 etc_hosts_bkp_010123
+drwx------ 16 am   am     4096 Jan  1  2023 am_bkp_010123
+-rw-rw-r--  1 am   am        0 Jan  1  2023 crontab_010123
+-rw-rw-r--  1 am   am      456 Jan  1  2023 pids_bkp_010123
+-rw-rw-r--  1 am   am    32548 Jan  1  2023 ps_ef_010123
+-rw-rw-r--  1 am   am    17484 Jan  1  2023 ps_ef_java_010123
+-rw-rw-r--  1 am   am      481 Jan  1  2023 ps_ef_http_010123
+drwxrwxr-x  3 am   am     4096 Feb  8  2023 vzw
+drwxrwxr-x  3 am   am     4096 Feb  8  2023 prevoty
+drwxrwxrwx  3 am   am     4096 Feb 13  2023 temp
+drwxr-xr-x  8 am   am     4096 Apr 14 12:45 infra
+-rw-r--r--  1 am   am     1178 Apr 15 12:24 lsblk_f
+-rw-r--r--  1 am   am      730 Apr 15 12:24 lsblk_a
+-rw-rw-r--  1 am   am       50 Apr 15 12:24 etc_hosts_bkp_041523
+drwx------ 16 am   am     4096 Apr 15 12:24 am_bkp_041523
+-rw-rw-r--  1 am   am        0 Apr 15 12:24 crontab_041523
+-rw-rw-r--  1 am   am      478 Apr 15 12:24 pids_bkp_041523
+-rw-rw-r--  1 am   am    33706 Apr 15 12:24 ps_ef_041523
+-rw-rw-r--  1 am   am    17271 Apr 15 12:24 ps_ef_java_041523
+-rw-rw-r--  1 am   am      481 Apr 15 12:24 ps_ef_http_041523
+drwxr-x---  2 am   am     4096 Apr 24 08:27 forgeorck
+drwxr-xr-x  4 am   am     4096 Apr 27 12:10 jdk
+drwxrwxr-x  6 am   am     4096 May 10 02:27 forgerock
+drwxrwxr-x  3 am   am     4096 May 18 03:04 May17th2023_upgradebackup
+drwxrwxr-x  2 am   am     4096 Jun 29 12:43 wars
+drwxr-xr-x  3 am   am     4096 Jul 20 07:34 rehydrate_bkp_072023
+drwx------ 15 am   am     4096 Jul 20 07:39 am_bkp_200723
+drwxrwxr-x  6 am   am     4096 Jul 26 17:07 openam
+drwxrwxr-x  4 am   am     4096 Aug  3 18:32 appserver
+drwxr-xr-x 21 am   am     4096 Aug 10 17:26 openig
+drwxrwxr-x  6 am   am     4096 Sep 20 11:13 ui
+drwxrwxr-x  3 am   am     4096 Oct  4 12:44 webapps
+drwxr-xr-x 15 root root   4096 Oct  6 21:20 am_071023
+drwx------  3 root root   4096 Oct  8 02:43 am_100823
+drwxrwxr-x  3 am   am     4096 Oct  8 22:15 scripts
+drwx------  4 root root   4096 Oct  8 22:37 am_100923
+root@10-119-34-87:/ # ls -lrt | wc -l
+26
+root@10-119-34-87:/ # ls -lart | wc -l
+30
+root@10-119-34-87:/home # ls -lrt | wc -l
+56
+root@10-119-34-87:/home # ls -lart | wc -l
+58
+
+
+Volume ID
+Device name
+Volume size (GiB)
+Attachment status
+Attachment time
+Encrypted
+KMS key ID
+Delete on termination
+vol-0c731b20adbb92f77	/dev/sda1	20	 Attached	2023/07/20 17:55 GMT+5:30	Yes	eab3f764-35ec-41c3-b26a-72ed700f999e	Yes
+vol-04b656757d1e1730f	/dev/sdf	60	 Attached	2023/07/20 18:01 GMT+5:30	Yes	eab3f764-35ec-41c3-b26a-72ed700f999e	No
+vol-091cfe14973039fa8	/dev/sdg	90	 Attached	2023/07/20 18:01 GMT+5:30	Yes	eab3f764-35ec-41c3-b26a-72ed700f999e	No
+vol-045a97bffa1111e77	/dev/sdh	10	 Attached	2023/07/20 18:01 GMT+5:30	Yes	eab3f764-35ec-41c3-b26a-72ed700f999e	No

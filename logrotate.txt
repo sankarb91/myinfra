@@ -1,0 +1,169 @@
+yum install logrotate -y
+logrotate --version
+cat /etc/logrotate.conf
+
+Daily ----log file are rotated
+Size------Log files are rotated 
+missingok --If the log file is missing  go on to the next one without issuing on error message. 
+
+
+
+root@10-119-33-172:/etc/logrotate.d # cat newrelic
+ /app/infra/logstash/logs/combined.log {
+    su am am    
+    copytruncate
+    daily
+    rotate 10
+    compress
+    missingok
+    }
+
+
+
+
+am@10-119-35-224:/etc/logrotate.d # cat openam
+  /app/openam/forgerock/mybopenma02/logs {
+     su am am
+     copytruncate
+     daily
+     rotate 10
+     compress
+     missingok
+     }    	 
+
+
+
+am@10-119-35-224 /app/openam/forgerock/mybopenma02/logs    (create folder )
+
+-rw-r--r-- 1 am am   25243 Mar 16 21:31 catalina.2023-03-16.log
+-rw-r--r-- 1 am am 4210628 Mar 16 23:59 localhost_access_log.2023-03-16.txt
+-rw-r--r-- 1 am am       0 Mar 17 01:48 manager.2023-03-17.log
+-rw-r--r-- 1 am am       0 Mar 17 01:48 localhost.2023-03-17.log
+-rw-r--r-- 1 am am       0 Mar 17 01:48 host-manager.2023-03-17.log
+-rw-r--r-- 1 am am   10524 Mar 17 01:49 catalina.2023-03-17.log
+-rw-r--r-- 1 am am 5180258 Mar 17 09:35 localhost_access_log.2023-03-17.txt
+-rw-r--r-- 1 am am     680 Mar 19 04:25 catalina.2023-03-19.log
+-rw-r--r-- 1 am am       0 Mar 20 03:46 manager.2023-03-20.log
+-rw-r--r-- 1 am am       0 Mar 20 03:46 localhost.2023-03-20.log
+-rw-r--r-- 1 am am       0 Mar 20 03:46 host-manager.2023-03-20.log
+-rw-r--r-- 1 am am  425125 Mar 20 20:15 catalina.2023-03-20.log
+-rw-r--r-- 1 am am       0 Mar 21 01:12 manager.2023-03-21.log
+-rw-r--r-- 1 am am       0 Mar 21 01:12 localhost.2023-03-21.log
+-rw-r--r-- 1 am am       0 Mar 21 01:12 host-manager.2023-03-21.log
+-rw-r--r-- 1 am am  442730 Mar 21 13:18 catalina.2023-03-21.log
+-rw-r--r-- 1 am am    8857 Mar 22 11:06 localhost.2023-03-22.log
+-rw-r--r-- 1 am am     310 Mar 22 13:38 catalina.2023-03-22.log
+-rw-r--r-- 1 am am       0 Mar 23 03:02 localhost.2023-03-23.log
+-rw-r--r-- 1 am am       0 Mar 23 03:02 manager.2023-03-23.log
+-rw-r--r-- 1 am am       0 Mar 23 03:02 host-manager.2023-03-23.log
+-rwxrwxrwx 1 am am  491530 Mar 23 08:52 catalina.out
+-rw-r--r-- 1 am am 1648419 Mar 23 17:52 catalina.2023-03-23.log
+-rw-r--r-- 1 am am   13287 Mar 24 14:36 localhost.2023-03-24.log
+-rw-r--r-- 1 am am       0 Mar 24 19:05 manager.2023-03-24.log
+-rw-r--r-- 1 am am       0 Mar 24 19:05 host-manager.2023-03-24.log
+-rw-r--r-- 1 am am  235486 Mar 24 19:08 catalina.2023-03-24.log
+-rw-r--r-- 1 am am    2718 Mar 25 22:11 catalina.2023-03-25.log
+-rw-r--r-- 1 am am    4682 Mar 26 22:14 catalina.2023-03-26.log
+-rw-r--r-- 1 am am    8857 Mar 27 10:31 localhost.2023-03-27.log
+-rw-r--r-- 1 am am    2176 Mar 27 22:16 catalina.2023-03-27.log
+-rw-r--r-- 1 am am    1262 Mar 28 22:26 catalina.2023-03-28.log
+-rw-r--r-- 1 am am    1805 Mar 29 23:26 catalina.2023-03-29.log
+-rw-r--r-- 1 am am    8858 Mar 30 08:05 localhost.2023-03-30.log
+-rw-r--r-- 1 am am       0 Mar 30 11:56 manager.2023-03-30.log
+-rw-r--r-- 1 am am       0 Mar 30 11:56 host-manager.2023-03-30.log
+-rw-r--r-- 1 am am   24737 Mar 30 13:44 catalina.2023-03-30.log
+-rw-r--r-- 1 am am    4429 Mar 31 06:27 localhost.2023-03-31.log
+-rw-r--r-- 1 am am    2546 Mar 31 13:44 catalina.2023-03-31.log
+-rw-r--r-- 1 am am    2677 Apr  1 15:29 catalina.2023-04-01.log
+-rw-r--r-- 1 am am    2128 Apr  2 16:49 catalina.2023-04-02.log
+-rw-r--r-- 1 am am       0 Apr  3 03:09 manager.2023-04-03.log
+-rw-r--r-- 1 am am       0 Apr  3 03:09 localhost.2023-04-03.log
+-rw-r--r-- 1 am am       0 Apr  3 03:09 host-manager.2023-04-03.log
+-rw-r--r-- 1 am am  305918 Apr  3 03:11 catalina.2023-04-03.log
+-rw-r--r-- 1 am am    2746 Apr  4 03:11 catalina.2023-04-04.log
+-rw-r--r-- 1 am am       0 Apr  5 19:14 localhost.2023-04-05.log
+-rw-r--r-- 1 am am       0 Apr  5 19:14 manager.2023-04-05.log
+-rw-r--r-- 1 am am       0 Apr  5 19:14 host-manager.2023-04-05.log
+-rw-r--r-- 1 am am  600078 Apr  5 20:20 catalina.2023-04-05.log
+-rw-r--r-- 1 am am       0 Apr  6 23:31 localhost.2023-04-06.log
+-rw-r--r-- 1 am am       0 Apr  6 23:31 manager.2023-04-06.log
+-rw-r--r-- 1 am am       0 Apr  6 23:31 host-manager.2023-04-06.log
+-rw-r--r-- 1 am am  327851 Apr  6 23:37 catalina.2023-04-06.log
+-rw-r--r-- 1 am am    1261 Apr  8 02:58 catalina.2023-04-08.log
+-rw-r--r-- 1 am am    2328 Apr  9 03:44 catalina.2023-04-09.log
+-rw-r--r-- 1 am am    2306 Apr 10 03:45 catalina.2023-04-10.log
+-rw-r--r-- 1 am am    1643 Apr 11 03:45 catalina.2023-04-11.log
+-rw-r--r-- 1 am am    2525 Apr 12 03:45 catalina.2023-04-12.log
+-rw-r--r-- 1 am am    2632 Apr 13 03:45 catalina.2023-04-13.log
+-rw-r--r-- 1 am am    2759 Apr 14 03:45 catalina.2023-04-14.log
+-rw-r--r-- 1 am am    1705 Apr 15 22:59 catalina.2023-04-15.log
+-rw-r--r-- 1 am am    2661 Apr 16 23:01 catalina.2023-04-16.log
+-rw-r--r-- 1 am am       0 Apr 17 00:28 manager.2023-04-17.log
+-rw-r--r-- 1 am am       0 Apr 17 00:28 localhost.2023-04-17.log
+-rw-r--r-- 1 am am       0 Apr 17 00:28 host-manager.2023-04-17.log
+-rw-r--r-- 1 am am  622896 Apr 17 13:39 catalina.2023-04-17.log
+-rw-r--r-- 1 am am       0 Apr 18 22:22 manager.2023-04-18.log
+-rw-r--r-- 1 am am       0 Apr 18 22:22 host-manager.2023-04-18.log
+-rw-r--r-- 1 am am    1578 Apr 18 23:47 localhost.2023-04-18.log
+-rw-r--r-- 1 am am  903069 Apr 18 23:55 catalina.2023-04-18.log
+-rw-r--r-- 1 am am       0 Apr 19 13:54 manager.2023-04-19.log
+-rw-r--r-- 1 am am       0 Apr 19 13:54 localhost.2023-04-19.log
+-rw-r--r-- 1 am am       0 Apr 19 13:54 host-manager.2023-04-19.log
+-rw-r--r-- 1 am am 1327660 Apr 19 21:15 catalina.2023-04-19.log
+-rw-r--r-- 1 am am       0 Apr 20 12:59 localhost.2023-04-20.log
+-rw-r--r-- 1 am am       0 Apr 20 12:59 manager.2023-04-20.log
+-rw-r--r-- 1 am am       0 Apr 20 12:59 host-manager.2023-04-20.log
+-rw-r--r-- 1 am am  906314 Apr 20 23:15 catalina.2023-04-20.log
+-rw-r--r-- 1 am am       0 Apr 21 00:05 localhost.2023-04-21.log
+-rw-r--r-- 1 am am       0 Apr 21 00:05 manager.2023-04-21.log
+-rw-r--r-- 1 am am       0 Apr 21 00:05 host-manager.2023-04-21.log
+-rw-r--r-- 1 am am  625124 Apr 21 01:26 catalina.2023-04-21.log
+-rw-r--r-- 1 am am    3156 Apr 22 05:25 catalina.2023-04-22.log
+-rw-r--r-- 1 am am       0 Apr 23 20:52 localhost.2023-04-23.log
+-rw-r--r-- 1 am am       0 Apr 23 20:52 manager.2023-04-23.log
+-rw-r--r-- 1 am am       0 Apr 23 20:52 host-manager.2023-04-23.log
+-rw-r--r-- 1 am am  318171 Apr 23 20:54 catalina.2023-04-23.log
+-rw-r--r-- 1 am am     310 Apr 25 00:47 catalina.2023-04-25.log
+-rw-r--r-- 1 am am    1018 Apr 26 01:14 catalina.2023-04-26.log
+-rw-r--r-- 1 am am     290 Apr 27 01:35 catalina.2023-04-27.log
+-rw-r--r-- 1 am am       0 Apr 28 07:31 manager.2023-04-28.log
+-rw-r--r-- 1 am am       0 Apr 28 07:31 localhost.2023-04-28.log
+-rw-r--r-- 1 am am       0 Apr 28 07:31 host-manager.2023-04-28.log
+-rw-r--r-- 1 am am  295980 Apr 28 09:49 catalina.2023-04-28.log
+-rw-r--r-- 1 am am    2265 Apr 29 23:41 catalina.2023-04-29.log
+-rw-r--r-- 1 am am     290 Apr 30 23:46 catalina.2023-04-30.log
+-rw-r--r-- 1 am am     419 May  1 23:46 catalina.2023-05-01.log
+-rw-r--r-- 1 am am       0 May  3 07:57 localhost.2023-05-03.log
+-rw-r--r-- 1 am am       0 May  3 07:57 manager.2023-05-03.log
+-rw-r--r-- 1 am am       0 May  3 07:57 host-manager.2023-05-03.log
+-rw-r--r-- 1 am am   14362 May  3 08:00 catalina.2023-05-03.log
+-rw-r--r-- 1 am am     836 May  4 08:11 catalina.2023-05-04.log
+-rw-r--r-- 1 am am       0 May  5 04:30 localhost.2023-05-05.log
+-rw-r--r-- 1 am am       0 May  5 04:30 manager.2023-05-05.log
+-rw-r--r-- 1 am am       0 May  5 04:30 host-manager.2023-05-05.log
+-rw-r--r-- 1 am am  474324 May  5 19:35 catalina.2023-05-05.log
+-rw-r--r-- 1 am am    1637 May  7 08:55 catalina.2023-05-07.log
+-rw-r--r-- 1 am am    4068 May  8 08:55 catalina.2023-05-08.log
+-rw-r--r-- 1 am am       0 May  9 02:56 manager.2023-05-09.log
+-rw-r--r-- 1 am am       0 May  9 02:56 localhost.2023-05-09.log
+-rw-r--r-- 1 am am       0 May  9 02:56 host-manager.2023-05-09.log
+-rw-r--r-- 1 am am   12946 May  9 03:03 catalina.2023-05-09.log
+-rw-r--r-- 1 am am     344 May 10 03:03 catalina.2023-05-10.log
+-rw-r--r-- 1 am am       0 May 11 16:58 localhost.2023-05-11.log
+-rw-r--r-- 1 am am       0 May 11 16:58 manager.2023-05-11.log
+-rw-r--r-- 1 am am       0 May 11 16:58 host-manager.2023-05-11.log
+-rw-r--r-- 1 am am  379804 May 11 17:06 catalina.2023-05-11.log
+-rw-r--r-- 1 am am    2001 May 12 00:02 catalina.2023-05-12.log
+-rw-r--r-- 1 am am    1877 May 13 03:50 catalina.2023-05-13.log
+-rw-r--r-- 1 am am    1684 May 14 08:28 catalina.2023-05-14.log
+-rw-r--r-- 1 am am    1218 May 15 08:31 catalina.2023-05-15.log
+-rw-r--r-- 1 am am    3330 May 16 08:34 catalina.2023-05-16.log
+-rw-r--r-- 1 am am    4814 May 17 08:34 catalina.2023-05-17.log
+-rw-r--r-- 1 am am       0 May 18 05:01 localhost.2023-05-18.log
+-rw-r--r-- 1 am am       0 May 18 05:01 manager.2023-05-18.log
+-rw-r--r-- 1 am am       0 May 18 05:01 host-manager.2023-05-18.log
+-rw-r--r-- 1 am am   11462 May 18 05:18 catalina.2023-05-18.log
+-rw-r--r-- 1 am am    4324 May 19 05:18 catalina.2023-05-19.log
+-rw-r--r-- 1 am am    4396 May 20 05:26 catalina.2023-05-20.log
+-rw-r--r-- 1 am am    2877 May 21 10:57 catalina.2023-05-21.log
+-rw-r--r-- 1 am am    2768 May 22 10:57 catalina.2023-05-22.log

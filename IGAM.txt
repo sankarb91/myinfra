@@ -1,0 +1,31 @@
+We have configured alert mail below servers:
+
+QA1 IG/AM SERVER
+QA2 IG/AM SERVER
+QA3 IG/AM SERVER
+QA4 IG/AM SERVER
+
+QA1 AKKA/IAM/KAFKA SERVER 
+QA2 AKKA/IAM/KAFKA SERVER 
+QA3 AKKA/IAM/KAFKA SERVER 
+QA4 AKKA/IAM/KAFKA SERVER 
+
+/app is more than 85 % alert will generate and notify from: noreply@verizonwireless.com to:	VBG.GTS.CIAM.Team@verizon.com
+This alert generate every 03 hours.
+
+After alert will manually login respective server clear logs.
+
+We prepared script clear the logs automatically.
+
+
+
+Who will be primarily responsible to act on these alerts?
+
+Infra team, either Me or Godwin
+
+can you send me a weekly summary whenever we have got this alert, what was done and by what time space was cleared etc.
+
+It is based on the issues.It will take approximately 20-30mnts.
+
+we need to update our leadership team
+can you please share those details ASAP please

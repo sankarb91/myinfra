@@ -1,0 +1,144 @@
+Firstboot Operations Completed Successfully
+Last login: Sat Sep  9 06:07:01 2023 from 63.10.106.77
+[sankna7@10-119-34-87 ~]$ nslookup jenkins-vbg3.vpc.verizon.com
+Server:         127.0.0.1
+Address:        127.0.0.1#53
+
+Non-authoritative answer:
+jenkins-vbg3.vpc.verizon.com    canonical name = jenkins-vbg3.avi-gslb.verizon.c                                                                             om.
+jenkins-vbg3.avi-gslb.verizon.com       canonical name = Jenkins-I0UV-AWS-NLB-AL                                                                             B-b03cb092b4bb2996.elb.us-west-2.amazonaws.com.
+Name:   Jenkins-I0UV-AWS-NLB-ALB-b03cb092b4bb2996.elb.us-west-2.amazonaws.com
+Address: 144.70.119.45
+Name:   Jenkins-I0UV-AWS-NLB-ALB-b03cb092b4bb2996.elb.us-west-2.amazonaws.com
+Address: 144.70.113.47
+
+
+Name	VZW.HZ2V.NP.SLAVE.0928AMI
+
+144.70.113.47
+GTS.HZ2V.L01.JenkinsVcmNode 
+
+10-119-38-119.ebiz.verizon.com/10.119.38.119:49390
+
+ami-04bad8a9b5c28d8c4   ---AMI ID
+
+Instance ID:
+=============
+i-00cdbaf7a87dd67bd
+(VZW.B6OV.NP.SLAVE.0623AMI)
+
+Private IP:
+==========
+10.119.38.119
+
+VPC ID:
+=======
+vpc-f7c48c90
+
+Region:
+=======
+us-west-2
+
+Security Group:
+===============
+sg-95c52cee
+sg-eb82be91
+sg-0abac971
+sg-e6b9ca9d
+
+IAM Role:
+=========
+VzPol-instance-NonProd-WLS-NP-B6OV-EC2Role
+
+
+OS IMAGE:
+========
+Red Hat Enterprise Linux 8.8 (Ootpa)
+
+Instance Type:
+=============
+t3a.medium
+
+Key Pair:
+=========
+------
+Volume:
+======
+
+vol-0c7fcdc731fdec2c7	/dev/sda1	20	 GB
+vol-02824b0cab441c7cb	/dev/sdf	60	 GB
+vol-0f83a410effb712ac	/dev/sdg	80	 GB
+vol-0d99d307ab5c4ba74	/dev/sdh	10   GB 
+
+Subnet ID:
+==========
+subnet-edfb9d8a
+
+Where will download jenkins file  and  install?
+
+
+
+==============
+Previous Jenkins Node - IP Address. Search IPAddress on AWS Console - Select the Node and check details - I will find VPN, Security group and other. 
+
+
+VZW.JenkinsVcmNode-26-09-2023   _AMI Name
+
+
+
+
+Clear filters
+
+1
+
+
+Name
+AMI ID
+AMI name
+Source
+Owner
+Visibility
+Status
+Creation date
+Platform
+Root device type
+Block devices
+Virtualization
+Deprecation time
+Name
+AMI ID
+AMI name
+Source
+Owner
+Visibility
+Status
+Creation date
+Platform
+Root device type
+Block devices
+Virtualization
+Deprecation time
+	ami-04bad8a9b5c28d8c4	VZW.JenkinsVcmNode-26-09-2023	230529650436/VZW.JenkinsVcmNode-26-09-2023	230529650436	Private	
+ Pending
+
+2023/09/26 21:36 GMT+5:30	Linux/UNIX	ebs	/dev/sda1=snap-083f1158cc01fca4a:20:true:gp3:encrypted, /dev/sdf=snap-00987891ee0aea747:60:true:standard:encrypted, /dev/sdg=snap-057dd992dc4fe1c3a:80:true:standard:encrypted, /dev/sdh=snap-07fe235e6b15d83a6:10:true:gp3:encrypted	hvm	–
+
+we observer  the node mentioned is already running with higher version:
+10-119-38-119:/app/jdk/jdk-11.0.13/bin # ps -ef |grep java
+weblogic    9692       1  0 Sep26 ?        00:21:07 /app/jdk/jdk11.0.18/bin/java -jar agent.jar -jnlpUrl https://jenkins-vbg3.vpc.verizon.com/vbg3/computer/GTS.HZ2V.L01.JenkinsVcmNode/slave-agent.jnlp -secret d0d1387cf45eb525afe7dc734ee5502dec3a3a7c7af5decfa77b1c29afcc1a75 -workDir /app/jenkins_vbg3
+weblogic  192677  192426  0 03:42 pts/1    00:00:00 grep --color=auto java
+
+##
+java -version
+java version "11.0.13" 2021-10-19 LTS
+Java(TM) SE Runtime Environment 18.9 (build 11.0.13+10-LTS-370)
+Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.13+10-LTS-370, mixed mode)
+
+Do you need lower version to be set here ?
+
+or should we check a different node ?
+Please ping the impacted JOB  and its node details 
+
+
+
+

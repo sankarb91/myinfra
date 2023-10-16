@@ -1,0 +1,238 @@
+df commands:
+----------
+
+[root@tecmint ~]# df
+[root@tecmint ~]# df -h
+[root@tecmint ~]# df -l
+[root@tecmint ~]# df -k
+[root@tecmint ~]# df -m
+[root@tecmint ~]# df -a
+[root@tecmint ~]# df -hT /home
+[root@tecmint ~]# df -i
+[root@tecmint ~]# df -T
+[root@tecmint ~]# df -t ext3
+[root@tecmint ~]# df -x ext3
+[root@tecmint ~]# df --help
+[root@tecmint ~]# du -h   /app/prodlogs
+
+
+
+
+am ~ $ d 
+am prodLogs $ ls -lrt
+am prodLogs $ du -h *
+am prodLogs $ pwd
+am prodLogs $ ls -lrt
+
+
+
+
+
+
+When you open the excel sheet, it will point out the vulnerability
+We need to resolve the vulnerability
+If the vulnerability is in application directory eg. vzauth then that will be for developers to resolve it
+Eg. On sheet 1
+port 8056/tcp has to be upgraded to Apache Tomcat 8.5.x < 8.5.83 Request Smuggling Vulnerability . First check what is runing on that port
+what version of tomcat it is running
+and then go from there
+
+
+
+
+
+please remove below file newrelic/logs/newrelic_agent    file remove steps:
+===========================================================================
+
+69G   /app/infra/newrelic/logs/newrelic_agent.log
+1:43
+same for email "ALERT!! QA2 AKKA/IAM/KAFKA Storage for /app is MORETHAN 85% (27-04-23 EDT)", remove below
+67G   /app/infra/newrelic/logs/newrelic_agent.log
+
+ps -eaf | grep  /app/infra/newrelic/logs/newrelic_agent.log
+kill -9 PID number
+
+
+am@10-119-34-87# lsof | grep '(deleted)'
+am@10-119-34-87:/app/openam/forgerock/mybopenam01/logs
+am@10-119-34-233:/app/infra/newrelic/logs
+am@10-119-34-233:/app/infra/newrelic/logs # lsof | grep -i '/app/infra/newrelic/logs/newrelic_agent.log (deleted)'
+am newrelic $ lsof | grep -i '/app/infra/newrelic/logs/newrelic_agent.log (deleted)'
+am newrelic $ lsof | grep -i '/app/infra/newrelic/ (deleted)'
+am newrelic $ ps -eaf | grep -i /app/infra/newrelic/logs/newrelic_agent.log
+am newrelic $ lsof | grep -i 22386(example)
+am@10-119-34-87:/app/openam/forgerock
+am / $ cd /app/openam/forgerock
+am forgerock $ ls -lrt
+am forgerock $ du -a /app/ | sort -n -r | head -n 10
+du -sh * | grep  -i g 
+du -s /app
+du -sh /app
+df -h
+ls -laq
+
+
+After remove the logs if not change the size capacity need to run below commands:
+================================================================================
+45 2023-05-10 02:04:02 rm newrelic_agent.log
+   46  2023-05-10 02:04:05 ls -lrt
+   47  2023-05-10 02:04:09 df -h
+   48  2023-05-10 02:04:23 lsof | grep '(deleted)'
+   49  2023-05-10 02:04:55 cd /proc/14811/fd
+   50  2023-05-10 02:04:57 ls -lrt
+   51  2023-05-10 02:05:08 pwd
+   52  2023-05-10 02:05:18 > /proc/14811/fd/25  ( 14811 _process ID need to change)
+   53  2023-05-10 02:05:25 df -h
+   54  2023-05-10 02:06:48 cd /
+   55  2023-05-10 02:06:50 df -h
+
+
+
+
+root@10-119-34-87:/app # du -sh * | grep -i g
+149M    backup_loginissue
+4.0K    forgeorck
+1.1G    forgerock
+4.7M    ig_sample_app
+2.9G    imp
+6.4G    infra
+2.0G    jdk
+16G     openam
+6.2G    openig
+743M    openigvpstest
+1.7G    scripts
+9.6G    tmp
+1.4G    ui
+283M    vbgig
+2.0G    vbg-qa
+3.6G    ws7
+root@10-119-34-87:/app #
+
+
+
+root@10-119-34-87:/app/newrelic/logs # tail -f newrelic_agent.log
+2023-05-08T15:01:13,489-0400 [25546 128] com.newrelic ERROR: The use_private_ssl configuration setting has been removed and will be ignored. The agent will use the JVM/JRE truststore by default unless you configure ca_bundle_path to use a different truststore.
+2023-05-08T15:01:13,493-0400 [25546 128] com.newrelic INFO: Using default collector host: collector.newrelic.com
+2023-05-08T15:01:13,494-0400 [25546 128] com.newrelic INFO: Using default metric ingest URI: https://metric-api.newrelic.com/metric/v1
+2023-05-08T15:01:13,494-0400 [25546 128] com.newrelic INFO: Using default event ingest URI: https://insights-collector.newrelic.com/v1/accounts/events
+2023-05-08T15:01:13,494-0400 [25546 128] com.newrelic ERROR: The use_private_ssl configuration setting has been removed and will be ignored. The agent will use the JVM/JRE truststore by default unless you configure ca_bundle_path to use a different truststore.
+2023-05-08T15:01:13,506-0400 [25546 128] com.newrelic INFO: Real user monitoring is enabled for application WLS-B6OV-MYBOPENAM-Tomcat-QA2-ESDC-GZ. Auto instrumentation is enabled.
+2023-05-08T18:18:36,752-0400 [25546 128] com.newrelic INFO: Successfully reconnected to the New Relic data service.
+2023-05-08T18:18:54,300-0400 [27990 112] com.newrelic INFO: Successfully reconnected to the New Relic data service.
+2023-05-08T18:22:14,589-0400 [27990 112] com.newrelic INFO: Successfully reconnected to the New Relic data service.
+2023-05-08T18:24:12,122-0400 [25546 128] com.newrelic INFO: Successfully reconnected to the New Relic data service.
+
+
+
+am@10-119-37-252:/app # lsof | grep 'deleted'
+
+
+
+
+Hi Team,
+
+We have cleared /app Disk storage from 94% to 12%. Thanks !!!
+
+Please find the snip below:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Filesystem                  Size  Used Avail Use% Mounted on
+devtmpfs                     16G     0   16G   0% /dev
+tmpfs                        16G     0   16G   0% /dev/shm
+tmpfs                        16G   66M   16G   1% /run
+tmpfs                        16G     0   16G   0% /sys/fs/cgroup
+/dev/mapper/vgroot-lvroot   4.0G  4.0G  136K 100% /
+/dev/nvme0n1p1              509M  139M  370M  28% /boot
+/dev/mapper/vgroot-lvvar    4.0G  1.6G  2.5G  39% /var
+/dev/mapper/vgroot-lvapps   5.0G  1.6G  3.5G  31% /apps
+/dev/mapper/vgroot-lvhome   509M  166M  344M  33% /home
+/dev/mapper/vgroot-lvcrash  2.0G   33M  2.0G   2% /var/crash
+/dev/mapper/vgroot-lvtmp    2.0G  234M  1.8G  12% /tmp
+tmpfs                       3.1G     0  3.1G   0% /run/user/810
+tmpfs                       3.1G     0  3.1G   0% /run/user/9003
+tmpfs                       3.1G     0  3.1G   0% /run/user/7513089
+/dev/nvme1n1                148G   90G   51G  64% /app
+/dev/nvme2n1                 59G   30G   27G  52% /log
+tmpfs                       3.1G     0  3.1G   0% /run/user/7308392
+tmpfs                       3.1G     0  3.1G   0% /run/user/7423393
+tmpfs                       3.1G     0  3.1G   0% /run/user/2612703
+tmpfs                       3.1G     0  3.1G   0% /run/user/2674456
+tmpfs                       3.1G     0  3.1G   0% /run/user/7584367

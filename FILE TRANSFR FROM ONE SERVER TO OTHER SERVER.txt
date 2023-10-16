@@ -1,0 +1,47 @@
+FILE TRANSFR FROM ONE SERVER TO OTHER SERVER:
+============================================
+
+From local server to remote server:
+===================================
+
+am ui $ scp -pr tomcat-services am@10.119.35.150:/app/ui/
+
+From remote server to local server:
+===================================
+
+[sankna7@10-119-35-150 ~]$ scp -pr sankna7@10.119.34.87:/app/ui/tomcat-services  
+
+zip -r tomcat-services.zip my_directory
+
+unzip tomcat-services.zip
+
+zip the directory
+scp the zip file to server2
+unzip to the correct location
+
+
+
+ 2023-09-20 10:38:07 cd ..
+   65  2023-09-20 10:38:29 cd /app/ui
+   66  2023-09-20 10:38:32 ls -lrt
+   67  2023-09-20 10:39:09 zip -r tomcat-services.zip tomcat-services
+   68  2023-09-20 10:39:49 ls -lrt
+   69  2023-09-20 10:40:20 chmod 777 tomcat-services.zip
+   70  2023-09-20 10:40:26 ls -lrt
+   71  2023-09-20 10:42:20 scp -rp tomcat-services.zip sankna7@10.119.35.150:/home/sankna7/
+   72  2023-09-20 10:53:52 cd tomcat-services
+   73  2023-09-20 10:53:55 ls -lrt
+   74  2023-09-20 10:55:07 ls -lrt | wc -l
+   75  2023-09-20 11:05:01 ls -lRt | wc -l
+   76  2023-09-20 11:05:57 history
+   77  2023-09-20 11:10:50 ls -lrt
+   78  2023-09-20 11:11:02 history
+   79  2023-09-20 11:11:24 cd /app/ui
+   80  2023-09-20 11:11:27 ls -lrt
+   81  2023-09-20 11:11:47 rm -rf tomcat-services.zip
+   82  2023-09-20 11:11:50 ls -lrt
+   83  2023-09-20 11:13:01 zip -r tomcat-services.zip tomcat-services
+   84  2023-09-20 11:13:23 ls -lrt
+   85  2023-09-20 11:15:12 history
+
+

@@ -1,0 +1,15 @@
+
+
+#!/bin/ksh
+export KILL_CMD="kill -9 "
+if [ -f PIDS.lst ]
+then
+rm -f PIDS.lst
+fi
+ps -ef | grep -E 'projectview' | grep -v grep | awk '{print $2}' > PIDS.lst
+for pid in `cat PIDS.lst` ;
+do
+$KILL_CMD $pid
+echo $KILL_CMD $pid
+done
+[11:08 AM] projectview --> change to registrationapi

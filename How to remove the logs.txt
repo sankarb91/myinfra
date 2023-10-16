@@ -1,0 +1,34 @@
+How to remove the logs:
+======================
+       route-035-amserver_logout-2023-05-09.0.log        
+ rm -r route-035-amserver_logout-2023-05-09.*
+ 
+ 
+ find /app/openig/logs/ -type f -mtime +2 -exec rm -rf {} \;
+ 
+#!bin/bash 
+/usr/bin/find /app/openig/logs/ -type f -mtime +3 -exec rm -rf {} \;
+ 
+ f- file
+ d-directory
+ am@10-119-34-233:/root # whereis find
+ 
+ root@10-119-33-172:/etc/logrotate.d # cat newrelic
+ /app/infra/logstash/logs/combined.log {
+    su am am    
+    copytruncate
+    daily
+    rotate 10
+    compress
+    missingok
+    }
+
+	
+
+ 
+ 
+ 
+  * 23 * * * find __________(log file path) -type f -mtime +3 -exec rm -rf {} \;
+ 
+ 
+ /usr/bin/find

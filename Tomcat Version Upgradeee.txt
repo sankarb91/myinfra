@@ -1,0 +1,43 @@
+Tomcat Version Upgrade:
+=======================
+cd /tmp
+
+https://oneartifactoryci.verizon.com/artifactory/DM3V_GCT_SS_Jar-virtual/org/apache/tomcat/tomcat/9.0.76.tar.gz
+
+tar -xvzf tomcat-9.0.76.tar.gz
+
+mv apache-tomcat-9.0.76 mybopenam02
+
+kill -9 PID of the app
+
+cd /app/openam/forgerock/
+
+mv mybopenam02 mybopenam02_240823
+
+cd /tmp
+
+mv mybopenam02 /app/openam/forgerock/
+
+cd mybopenam02
+
+mv webapps webapps.old
+
+diff -rq mybopenam02/bin mybopenam02_240823/bin
+diff -rq mybopenam02/conf mybopenam02_240823/conf
+
+# webapps
+mkdir webapps
+cp -pr ../mybopenam02_240823/webapps/* webapps
+
+# bin
+cp -p mybopenam02_240823/bin/start_mybopenam02.sh  mybopenam02/bin/
+chmod 755 bin/*.sh
+
+# conf
+ mv conf conf.orig
+ mkdir conf
+cp -pr ../mybopenam02_240823/conf/* conf
+
+# logs
+mv logs logs.orig
+ln -s /log/openam/mybopenam02 logs
